@@ -63,6 +63,8 @@ Todesfälle_Alter_Geschlecht %>% filter(Geschlecht == "männlich") %>%
  ggplot(Todesfälle_Alter_Geschlecht, mapping = aes(x = männlich  )) + geom_bar()
 
 
+## ggplot
+
 
 
 
