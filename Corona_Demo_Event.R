@@ -60,9 +60,7 @@ cor.test(data_muc_sep$faelle_covid_aktuell , data_muc_sep$faelle_covid_aktuell_i
 ##Positiven Zsmhang berechnen (einseitigen Test)
 cor.test(data_muc_sep$faelle_covid_aktuell , data_muc_sep$faelle_covid_aktuell_invasiv_beatmet, alternative = "greater")
 
-
-
-
+### A:  starker Zusammenhang !!!
 
 
 
