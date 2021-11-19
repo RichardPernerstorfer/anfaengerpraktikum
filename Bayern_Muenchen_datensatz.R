@@ -4,15 +4,12 @@ divi_17_11<- read_csv("DIVI-Intensivregister_2021-11-17_12-15.csv")
 
 ### Datensatz Bayern
 
-data_bayern <- subset(divi_03_11, bundesland == "09")
+data_bayern <- subset(divi_17_11, bundesland == "09")
 
 
 ### Datensatz München
 
 data_muenchen <- subset(data_bayern, gemeindeschluessel == "09162")
-
-
-
 
 
 
@@ -22,11 +19,9 @@ data_bayern_sep <- subset(data_bayern, date >= "2020-09-01" & date <= "2020-09-3
 data_bayern$date <-as.Date(data_bayern$date, format = "%Y-%m-%d")
 
 
-
 ## Muenchen in September
 
 data_muc_sep <- subset(data_bayern_sep, gemeindeschluessel == "09162")
-
 
 
 ### Verschiede GGplots zu Munchen in September
@@ -41,15 +36,10 @@ ggplot(data = data_muc_sep, aes(x = date, y = faelle_covid_aktuell_invasiv_beatm
   geom_bar(stat="identity")
 
 
-
-
-
-
 ### Bayern und München in August
 
 data_bayern_aug <- subset(data_bayern, date >= "2020-08-01" & date <= "2020-08-31" )
 data_muc_aug <- subset(data_bayern_aug, gemeindeschluessel == "09162")
-
 
 
 ## Bayern und München in Oktober
