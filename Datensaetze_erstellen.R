@@ -28,7 +28,7 @@ data_muenchen <- subset(data_bayern, gemeindeschluessel == "09162")
 data_IAA_germany <- subset(divi_17_11, date >= "2021-08-07" & date <= "2021-11-12" )
 data_IAA_bayern <- subset(data_bayern, date >= "2021-08-07" & date <= "2021-11-12" )
 data_IAA_muenchen <- subset(data_muenchen, date >= "2021-08-07" & date <= "2021-11-12" )
-
+data_IAA_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "2021-08-07" & date <= "2021-11-12" )
 
 ### Datensatz Corona Demonstration
 
