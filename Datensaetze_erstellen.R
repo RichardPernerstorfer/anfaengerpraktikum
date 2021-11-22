@@ -50,7 +50,7 @@ data_muc_nov <- subset(data_bayern_nov, gemeindeschluessel == "09162")
 ##Datensatz EM alle 4 Monate  
 data_bayern_EM<-subset(data_bayern,date>="2021-05-11"&date<="2021-09-11")
 data_muenchen_EM<-subset(data_muenchen,date>="2021-05-11"&date<="2021-09-11")
-data_bayern_ohne_Muc_EM<-subset(data_bayern_ohne_Muc,date>="2021-05-11"&date<="2021-09-11")
+data_bayern_ohne_muenchen_EM<-subset(data_bayern_ohne_Muc,date>="2021-05-11"&date<="2021-09-11")
 
 ###Datensatz EM monatlich getrennt
 ##Bayern
