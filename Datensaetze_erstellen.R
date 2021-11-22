@@ -7,9 +7,18 @@ library(readr)
 
 divi_03_11<- read_csv("DIVI-Intensivregister-2021-11-03-12-15.csv")
 
+
 ## Neues Divi Datensatz
 
 divi_17_11<- read_csv("DIVI-Intensivregister_2021-11-17_12-15.csv")
+
+
+### Datensatz überprüfen
+
+fehlendeWerte <- table(is.na(divi_17_11))
+fehlendeWerte[[TRUE]]  # Beachtung bei Berechnungen
+
+
 
 ### Neue Spalte betten_anteil gibt prozentualen Anteil der belegten Betten
 
