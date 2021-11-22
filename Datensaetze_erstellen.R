@@ -2,6 +2,7 @@
 
 library(readr)
 
+
 ## Altes Divi Datensatz
 
 divi_03_11<- read_csv("DIVI-Intensivregister-2021-11-03-12-15.csv")
