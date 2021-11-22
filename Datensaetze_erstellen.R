@@ -46,5 +46,29 @@ data_muc_oct <- subset(data_bayern_oct, gemeindeschluessel == "09162")
 data_bayern_nov <- subset(data_bayern, date >= "2020-11-01" & date <= "2020-11-30")
 data_muc_nov <- subset(data_bayern_nov, gemeindeschluessel == "09162")
 
+### Datensätze EM
+##Datensatz EM alle 4 Monate  
+data_bayern_EM<-subset(data_bayern,date>="2021-05-11"&date<="2021-09-11")
+data_muenchen_EM<-subset(data_muenchen,date>="2021-05-11"&date<="2021-09-11")
+data_bayern_ohne_Muc_EM<-subset(data_bayern_ohne_Muc,date>="2021-05-11"&date<="2021-09-11")
 
+###Datensatz EM monatlich getrennt
+##Bayern
+data_bayern_EM_5<-subset(data_bayern,date>="2021-05-11"&date<="2021-06-11")
+data_bayern_EM_6<-subset(data_bayern,date>="2021-06-11"&date<="2021-07-11")
+data_bayern_EM_7<-subset(data_bayern,date>="2021-07-11"&date<="2021-08-11")
+data_bayern_EM_8<-subset(data_bayern,date>="2021-08-11"&date<="2021-09-11")
+
+## Muenchen
+data_muenchen_EM_5<-subset(data_muenchen,date>="2021-05-11"&date<="2021-06-11")
+data_muenchen_EM_6<-subset(data_muenchen,date>="2021-06-11"&date<="2021-07-11")
+data_muenchen_EM_7<-subset(data_muenchen,date>="2021-07-11"&date<="2021-08-11")
+data_muenchen_EM_8<-subset(data_muenchen,date>="2021-08-11"&date<="2021-09-11")
+
+##Bayern ohne Muenchen
+
+data_bayern_ohne_muenchen_EM_5<-subset(data_bayern_ohne_Muc,date>="2021-05-11"&date<="2021-06-11")
+data_bayern_ohne_muenchen_EM_6<-subset(data_bayern_ohne_Muc,date>="2021-06-11"&date<="2021-07-11")
+data_bayern_ohne_muenchen_EM_7<-subset(data_bayern_ohne_Muc,date>="2021-07-11"&date<="2021-08-11")
+data_bayern_ohne_muenchen_EM_8<-subset(data_bayern_ohne_Muc,date>="2021-08-11"&date<="2021-09-11")
 
