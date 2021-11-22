@@ -4,7 +4,6 @@ library(ggplot2)
 library(lubridate)
 
 
-
 ### Bar-Plots zu Corona Faellen in München von August bis November
 
 plot_muc_aug_cov <- ggplot(data = data_muc_aug, aes(x = date, y = faelle_covid_aktuell)) +

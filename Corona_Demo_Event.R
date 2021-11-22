@@ -52,7 +52,6 @@ cor.test(data_muc_sep$faelle_covid_aktuell , data_muc_sep$faelle_covid_aktuell_i
 
 
 
-
 ### Korrelation zwischen Covid Fälle und Intensiv Beatmet in Muenchen October
 
 
