@@ -64,8 +64,10 @@ data_muc_oct <- subset(data_bayern_oct, gemeindeschluessel == "09162")
 data_bayern_nov <- subset(data_bayern, date >= "2020-11-01" & date <= "2020-11-30")
 data_muc_nov <- subset(data_bayern_nov, gemeindeschluessel == "09162")
 
-data_muc_aug_bis_nov <- subset(data_muenchen, date >= "2020-08-01" &  date <= "2020-11-30" )
-
+data_CorDemo_germany <- subset(divi_17_11, date >= "2020-08-01" &  date <= "2020-11-30")
+data_CorDemo_muenchen <- subset(data_muenchen, date >= "2020-08-01" &  date <= "2020-11-30" )
+data_CorDemo_bayern <- subset(data_bayern, date >= "2020-08-01" &  date <= "2020-11-30")
+data_CorDemo_bayern_ohne_muenchen <- subset(data_bayern_ohne_muenchen, date >= "2020-08-01" &  date <= "2020-11-30")
 
 ### Datensatz Black Lives Matter Demonstration 
 
