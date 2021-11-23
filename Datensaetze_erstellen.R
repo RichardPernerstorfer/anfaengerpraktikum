@@ -19,12 +19,12 @@ fehlendeWerte <- table(is.na(divi_17_11))
 fehlendeWerte[[TRUE]]  # Beachtung bei Berechnungen
 
 
-
 ### Neue Spalte betten_anteil gibt prozentualen Anteil der belegten Betten
 
 divi_03_11$betten_anteil <- divi_03_11$betten_belegt / (divi_03_11$betten_frei + divi_03_11$betten_belegt)
 
 divi_17_11$betten_anteil <- divi_17_11$betten_belegt / (divi_17_11$betten_frei + divi_17_11$betten_belegt)
+
 
 ### Datensätze allgemein
 
@@ -34,13 +34,18 @@ data_deutschland_ohne_bayern <- subset(divi_17_11, bundesland != "09")
 data_muenchen <- subset(data_bayern, gemeindeschluessel == "09162")
 
 
+### Neue Spalte faelle_covid_anteil gibt prozentualen Anteil von Corona Infizierten zur Gesasamtbevölkerung Münchens
+## Zahl der Bevölkerung aus https://de.wikipedia.org/wiki/M%C3%BCnchen (Zuletzt aufgerufen 23.11.2021)
+
+data_muenchen$faelle_covid_anteil <- data_muenchen$faelle_covid_aktuell / 1488202  # Stand: 31. Dez. 2020
+
+
 ### Datensatz IAA Deutschlandweit
 
 data_IAA_germany <- subset(divi_17_11, date >= "2021-08-07" & date <= "2021-11-12" )
 data_IAA_bayern <- subset(data_bayern, date >= "2021-08-07" & date <= "2021-11-12" )
 data_IAA_muenchen <- subset(data_muenchen, date >= "2021-08-07" & date <= "2021-11-12" )
 data_IAA_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "2021-08-07" & date <= "2021-11-12" )
-
 
 
 ### Datensatz Corona Demonstration
@@ -60,7 +65,6 @@ data_bayern_nov <- subset(data_bayern, date >= "2020-11-01" & date <= "2020-11-3
 data_muc_nov <- subset(data_bayern_nov, gemeindeschluessel == "09162")
 
 data_muc_aug_bis_nov <- subset(data_muenchen, date >= "2020-08-01" &  date <= "2020-11-30" )
-
 
 
 ### Datensatz Black Lives Matter Demonstration 
