@@ -90,10 +90,17 @@ ggplot(data = data_CorDemo_bayern_ohne_muenchen, aes(x = date, y = faelle_covid_
 
 ### Gemeinsamer Bar-Plot: Corona Fälle und Invasiv Beatmet in Muenchen 
 
+color_code <- c("faelle_covid_aktuell" = "blue",
+                "faelle_covid_aktuell_invasiv_beatmet" = "red")
 
 ggplot(data = data_CorDemo_muenchen, aes(x=date)) +
-geom_bar(aes(y=faelle_covid_aktuell), stat = "identity", position = "identity", fill='lightblue', color = 'lightblue4')+
-geom_bar(aes(y=faelle_covid_aktuell_invasiv_beatmet), stat = "identity", position = "identity", fill = 'pink', color = 'red' )
+geom_bar(aes(y=faelle_covid_aktuell, col = "faelle_covid_aktuell"), stat = "identity", position = "identity") +
+geom_bar(aes(y=faelle_covid_aktuell_invasiv_beatmet, col = "faelle_covid_aktuell_invasiv_beatmet"), stat = "identity", position = "identity") +
+  xlab("Datum") + ylab("Aktuelle Covid Fälle") +
+  ggtitle(" Verlauf von Corona Fällen und Invasiv Beatmeten Fällen in München") 
+  
+
+scale_color_manual("Index", values = color_code)
 
 
 
@@ -108,4 +115,9 @@ ggplot(data = data_muc_sep)+ aes(x = date) + geom_line(aes( y = faelle_covid_akt
 scale_color_manual("Index", values = color_code)
 
 
+### relativer Anteil München Covid Fälle
+
+ggplot(data = data_CorDemo_muenchen, aes(x = date, y = faelle_covid_anteil)) +
+  ggtitle("Infektionsgeschehen zwischen August und November in München") +
+  xlab("Datum") + ylab("Anteil Infektionen") + geom_line()
 
