@@ -7,7 +7,6 @@ library(readr)
 
 divi_17_11<- read_csv("DIVI-Intensivregister_2021-11-17_12-15.csv")
 
-
 ### Datensatz überprüfen
 
 fehlendeWerte <- table(is.na(divi_17_11))
