@@ -3,12 +3,7 @@
 library(readr)
 
 
-## Altes Divi Datensatz
-
-divi_03_11<- read_csv("DIVI-Intensivregister-2021-11-03-12-15.csv")
-
-
-## Neues Divi Datensatz
+##  Divi Datensatz
 
 divi_17_11<- read_csv("DIVI-Intensivregister_2021-11-17_12-15.csv")
 
@@ -21,7 +16,6 @@ fehlendeWerte[[TRUE]]  # Beachtung bei Berechnungen
 
 ### Neue Spalte betten_anteil gibt prozentualen Anteil der belegten Betten
 
-divi_03_11$betten_anteil <- divi_03_11$betten_belegt / (divi_03_11$betten_frei + divi_03_11$betten_belegt)
 
 divi_17_11$betten_anteil <- divi_17_11$betten_belegt / (divi_17_11$betten_frei + divi_17_11$betten_belegt)
 
@@ -38,7 +32,6 @@ data_muenchen <- subset(data_bayern, gemeindeschluessel == "09162")
 ## Zahl der Bevölkerung aus https://de.wikipedia.org/wiki/M%C3%BCnchen (Zuletzt aufgerufen 23.11.2021)
 
 data_muenchen$faelle_covid_anteil <- data_muenchen$faelle_covid_aktuell / 1488202  # Stand: 31. Dez. 2020
-
 
 ### Datensatz IAA Deutschlandweit
 
