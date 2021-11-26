@@ -23,7 +23,7 @@ divi_17_11$betten_anteil <- divi_17_11$betten_belegt / (divi_17_11$betten_frei +
 ### Datensätze allgemein
 
 data_bayern <- subset(divi_17_11, bundesland == "09")
-data_bayern_ohne_muenchen <- subset(divi_17_11, bundesland == "09", gemeindeschluessel != "09162")
+data_bayern_ohne_muenchen <- subset(divi_17_11, bundesland == "09" & gemeindeschluessel != "09162")
 data_deutschland_ohne_bayern <- subset(divi_17_11, bundesland != "09")
 data_muenchen <- subset(data_bayern, gemeindeschluessel == "09162")
 
