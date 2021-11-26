@@ -90,6 +90,8 @@ Fälle_Hospitalisierung_Alter
 
 
 
+
+
 ## 5. Todesfälle_Alter_Geschlecht
 
 as.data.frame(Todesfälle_Alter_Geschlecht)
