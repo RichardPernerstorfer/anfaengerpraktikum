@@ -29,6 +29,15 @@ ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = date, y = faelle_covid_aktu
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
            ymin = 0, ymax = Inf)
+
+# Fälle IAA Anteil München an Bayern
+ggplot(data = data_IAA_anteil_muenchen_bayern, aes(y = x, x = date)) + 
+  geom_line() + 
+  labs(x = "Datum", y = "Anteil aktueller Covid-Fälle", title = "Anteil der bayerischen Covid-Fälle von München") +
+  annotate("rect", fill = "pink", alpha = 0.4, 
+           xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
+           ymin = 0, ymax = Inf)
+
 # Belegte Intensivbetten IAA
 ggplot() + 
   geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_IAA_muenchen, stat = "identity", fill = "blue") + 
