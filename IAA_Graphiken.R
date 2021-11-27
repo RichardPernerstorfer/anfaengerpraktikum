@@ -48,7 +48,7 @@ ggplot() +
            ymin = 0, ymax = Inf)
 # belegte Intensivbetten Prozent
 ggplot(data = data_IAA_muenchen, aes(x = date, y = betten_anteil)) +
-  geom_bar(stat="identity") + 
+  geom_line(stat="identity") + 
   labs(x = "Datum", y = "Anteil belegter Intensivbetten", title = "Anteil belegter Intensivbetten in München um IAA") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
