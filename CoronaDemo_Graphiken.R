@@ -4,58 +4,90 @@ library(ggplot2)
 library(lubridate)
 
 
+
 ### Bar-Plots zu Corona Faellen in München von August bis November
 
+# August
 plot_muc_aug_cov <- ggplot(data = data_muc_aug, aes(x = date, y = faelle_covid_aktuell)) +
   ggtitle("Corona Fälle in Muenchen in August") +
-  xlab("Datum") + ylab("Aktuelle Covid Fälle") + geom_bar(stat="identity")
-  
-plot_muc_sep_cov <- ggplot(data = data_muc_sep, aes(x = date, y = faelle_covid_aktuell)) +
-  ggtitle("Corona Fälle in Muenchen in September") +
-  xlab("Datum") + ylab("Aktuelle Covid Fälle") + geom_bar(stat="identity")
+  xlab("Datum") + ylab("Aktuelle Covid Fälle") 
 
+plot_muc_aug_cov
+
+# September
+plot_muc_sep_cov <- ggplot(data = data_muc_sep, aes(x = date, y = faelle_covid_aktuell, 
+                                                    fill = ifelse(date == "2020-09-12", "Corona-Demo", " Tage"))) +
+  scale_fill_manual(name = "area", values=c("grey50","red")) +
+  ggtitle("Corona Fälle in Muenchen in September") +
+  xlab("Datum") + ylab("Aktuelle Covid Fälle") + geom_bar(stat="identity") 
+  
+plot_muc_sep_cov
+
+# Oktober
 plot_muc_oct_cov <- ggplot(data = data_muc_oct, aes(x = date, y = faelle_covid_aktuell)) +
   ggtitle("Corona Fälle in Muenchen in Oktober") +
   xlab("Datum") + ylab("Aktuelle Covid Fälle") + geom_bar(stat="identity")
 
+plot_muc_oct_cov
+
+# November
 plot_muc_nov_cov <- ggplot(data = data_muc_nov, aes(x = date, y = faelle_covid_aktuell)) +
   ggtitle("Corona Fälle in Muenchen in November") +
   xlab("Datum") + ylab("Aktuelle Covid Fälle") + geom_bar(stat="identity")
+
+plot_muc_nov_cov
+
 
 
 
 ### Barplots zu Invasiv Beatmeten in Muenchen von August bis November
 
+# August
 plot_muc_aug_invb <-ggplot(data = data_muc_aug, aes(x = date, y = faelle_covid_aktuell_invasiv_beatmet)) +
   ggtitle("Invasiv Beatmete Covid Fälle in München in August")+
   xlab("Datum") + ylab("Aktuelle Covid invasiv beatmeten Fällen") +
   geom_bar(stat="identity")
 
-plot_muc_sep_invb <-ggplot(data = data_muc_sep, aes(x = date, y = faelle_covid_aktuell_invasiv_beatmet)) +
+plot_muc_aug_invb
+
+# September
+plot_muc_sep_invb <-ggplot(data = data_muc_sep, aes(x = date, y = faelle_covid_aktuell_invasiv_beatmet,
+                                                    fill = ifelse(date == "2020-09-12", "Corona-Demo", " Tage"))) +
+  scale_fill_manual(name = "area", values=c("grey50","red")) +
   ggtitle("Invasiv Beatmete Covid Fälle in München in September")+
   xlab("Datum") + ylab("Aktuelle Covid invasiv beatmeten Fällen") +
   geom_bar(stat="identity")
 
+plot_muc_sep_invb
+
+# Oktober
 plot_muc_oct_invb <-ggplot(data = data_muc_oct, aes(x = date, y = faelle_covid_aktuell_invasiv_beatmet)) +
   ggtitle("Invasiv Beatmete Covid Fälle in München in Oktober")+
   xlab("Datum") + ylab("Aktuelle Covid invasiv beatmeten Fällen") +
   geom_bar(stat="identity")
 
+plot_muc_oct_invb
+
+# November
 plot_muc_nov_invb <- ggplot(data = data_muc_nov, aes(x = date, y = faelle_covid_aktuell_invasiv_beatmet)) +
   ggtitle("Invasiv Beatmete Covid Fälle in München in November")+
   xlab("Datum") + ylab("Aktuelle Covid invasiv beatmeten Fällen") +
   geom_bar(stat="identity")
 
+plot_muc_nov_invb
+
+
 
 
 ### Alle Bar-Plots zu Corona Faellen in München von August bis November in Einem
 
-install.packages("ggpubr")
+
 library(ggpubr)
 
 
 ggarrange(plot_muc_aug_cov, plot_muc_sep_cov, plot_muc_oct_cov, plot_muc_nov_cov ,
           ncol = 2, nrow = 2)
+
 
 
 
@@ -121,3 +153,16 @@ ggplot(data = data_CorDemo_muenchen, aes(x = date, y = faelle_covid_anteil)) +
   ggtitle("Infektionsgeschehen zwischen August und November in München") +
   xlab("Datum") + ylab("Anteil Infektionen") + geom_line()
 
+
+### Vergleich mit Berlin
+
+data_berlin <- subset(divi_17_11, bundesland == "11")
+data_CorDemo_berlin <- subset(data_berlin, date >= "2020-08-01" &  date <= "2020-11-30")
+
+ggplot(data = data_berlin, aes(x = date, y = faelle_covid_aktuell)) +
+  ggtitle("Corona Fälle in Berlin") +
+  xlab("Datum") + ylab("Aktuelle Covid Fälle") + geom_bar(stat="identity")
+
+ggplot(data = data_CorDemo_berlin, aes(x = date, y = faelle_covid_aktuell)) +
+  ggtitle("Corona Fälle in Berlin") +
+  xlab("Datum") + ylab("Aktuelle Covid Fälle") + geom_bar(stat="identity")
