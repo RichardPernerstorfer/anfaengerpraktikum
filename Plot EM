@@ -1,0 +1,15 @@
+#Vergleich Bayern mit/ohne Muenchen
+plot_bayern_ohne_mit_muenchen<-ggplot()+
+  geom_bar(data=data_bayern_EM,aes(x=date,y=faelle_covid_aktuell),stat = "identity",fill="coral2") + 
+  geom_bar(data=data_bayern_ohne_muenchen_EM,aes(x=date,y=faelle_covid_aktuell),stat = "identity", fill ="turquoise4") + 
+  labs(x = "Datum", y = "faelle_covid_aktuell", title = "faelle_covid_aktuell_Bayern_mit_ohne_Muenchen")+
+  annotate("rect", fill = "red", alpha = 0.4, 
+           xmin = as.Date(c("2021-06-11")), xmax = as.Date(c("2021-07-11")),
+           ymin = 0, ymax = Inf)
+plot_bayern_ohne_mit_muenchen
+
+plot_bayern_mit_ohne_muenchen<-ggplot()+
+  geom_bar(data=data_bayern_EM,aes(x=date,y=faelle_covid_aktuell),stat = "identity",fill ="turquoise4") + 
+  geom_bar(data=data_muenchen_EM,aes(x=date,y=faelle_covid_aktuell),stat = "identity", fill ="coral2") + 
+  labs(x = "Datum", y = "faelle_covid_aktuell", title = "faelle_covid_aktuell_Bayern_mit_ohne_Muenchen")
+plot_bayern_mit_ohne_muenchen
