@@ -61,17 +61,20 @@ data_CorDemo_muenchen <- subset(data_muenchen, date >= "2020-08-01" &  date <= "
 data_CorDemo_bayern <- subset(data_bayern, date >= "2020-08-01" &  date <= "2020-11-30")
 data_CorDemo_bayern_ohne_muenchen <- subset(data_bayern_ohne_muenchen, date >= "2020-08-01" &  date <= "2020-11-30")
 
+
 ### Datensatz Black Lives Matter Demonstration 
 
-data_passau <- subset(data_bayern, gemeindeschluessel == "09262")
-data_BLM_passau <- subset(data_passau, date >= "2020-06-11" & date <= "2020-09-11" )
+data_BLM_germany <- subset(divi_17_11, date >= "2020-05-06" & date <= "2020-08-06" )
+data_BLM_bayern <- subset(data_bayern, date >= "2020-05-11" & date <= "2020-08-06" )
+data_BLM_muenchen <- subset(data_muenchen, date >= "2020-05-06" & date <= "2020-08-06" )
+data_BLM_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "2020-05-06" & date <= "2020-05-06" )
 
-## Spalte faelle_anteil in Passau
-data_passau$faelle_covid_anteil <- data_passau$faelle_covid_aktuell / 52.469 
 
-data_BLM_germany <- subset(divi_17_11, date >= "2020-06-11" & date <= "2020-09-11" )
-data_BLM_bayern <- subset(data_bayern, date >= "2020-06-11" & date <= "2020-09-11" )
-data_BLM_muenchen <- subset(data_muenchen, date >= "2020-06-11" & date <= "2020-09-11" )
-data_BLM_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "2020-06-11" & date <= "2020-09-11" )
+## Gelsenkirchen
 
+data_nordrheinwestfalen <- subset(divi_17_11, bundesland == "05")
+data_gelsenkirchen <- subset(data_nordrheinwestfalen, gemeindeschluessel == "05513")
+data_gelsenkirchen$faelle_covid_anteil <- data_gelsenkirchen$faelle_covid_aktuell/262073
+data_BLM_gelsenkirchen <- subset(data_gelsenkirchen, date >= "2020-05-06" & date <= "2020-08-06" )
+data_BLM_gelsenkirchen_muenchen <- rbind(data_BLM_muenchen,data_BLM_gelsenkirchen)
 
