@@ -14,6 +14,19 @@ plot_bayern_mit_ohne_muenchen<-ggplot()+
   labs(x = "Datum", y = "faelle_covid_aktuell", title = "faelle_covid_aktuell_Bayern_mit_ohne_Muenchen")
 plot_bayern_mit_ohne_muenchen
 
-#data Anteil faelle_covid_aktuell Muenchen zu Bayern
+## relativen Häufigkeit der bayerischen covid-fälle von muenchen EM   
 data_bayern_EM_faelle_covid_aktuell_aggregate<-aggregate(data_bayern_EM$faelle_covid_aktuell, data_bayern_EM[1], sum)
+data_anteil_faelle_covid_aktuell_muenchen_bayern_EM<- data_muenchen_EM$faelle_covid_aktuell/ data_bayern_EM_faelle_covid_aktuell_aggregate$x
+data_bayern_EM_faelle_covid_aktuell_aggregate$x<-data_anteil_faelle_covid_aktuell_muenchen_bayern_EM
+View(data_anteil_faelle_covid_aktuell_muenchen_bayern_EM)
 View(data_bayern_EM_faelle_covid_aktuell_aggregate)
+
+#plot relative_haeufigkeit_covid_fälle_München_EM
+relative_haeufigkeit_covid_fälle_München_EM<-ggplot(data = data_bayern_EM_faelle_covid_aktuell_aggregate, aes(y = x, x = date))+
+  geom_line(linetype=1,size=1,color="turquoise4")+
+  labs(x = "Datum", y = "Relative Häufigkeit", title = "Relative Häufigkeit der bayerischen Covid-Fälle von München während der EM")+
+  annotate("rect", fill = "pink", alpha = 0.4, 
+           xmin = as.Date(c("2021-06-11")), xmax = as.Date(c("2021-7-11")),
+           ymin = 0, ymax = Inf)
+relative_haeufigkeit_covid_fälle_München_EM
+  
