@@ -31,8 +31,8 @@ ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = date, y = faelle_covid_aktu
            ymin = 0, ymax = Inf)
 # Belegte Intensivbetten IAA
 ggplot() + 
-  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_IAA_muenchen, stat = "identity") + 
-  geom_bar(aes(y = betten_belegt, x = date), data = data_IAA_muenchen, stat = "identity", fill = "red", alpha = 0.6) + 
+  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_IAA_muenchen, stat = "identity", fill = "blue") + 
+  geom_bar(aes(y = betten_belegt, x = date), data = data_IAA_muenchen, stat = "identity") + 
   labs(x = "Datum", y = "Intensivbetten absolut ", title = "Intensivbetten in München") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
