@@ -83,4 +83,4 @@ data_BLM_gelsenkirchen_muenchen <- rbind(data_BLM_muenchen,data_BLM_gelsenkirche
 data_passau <- subset(data_bayern, gemeindeschluessel == "09262")
 data_passau$faelle_covid_anteil <- data_passau$faelle_covid_aktuell/52469
 data_BLM_passau <- subset(data_passau, date >= "2020-05-06" & date <= "2020-08-06")
-data_BML_alle_städte <- rbind(data_BLM_gelsenkirchen_muenchen, data_BLM_passau)
+data_BLM_alle_städte <- rbind(data_BLM_gelsenkirchen_muenchen, data_BLM_passau)
