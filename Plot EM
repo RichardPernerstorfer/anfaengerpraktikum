@@ -13,3 +13,7 @@ plot_bayern_mit_ohne_muenchen<-ggplot()+
   geom_bar(data=data_muenchen_EM,aes(x=date,y=faelle_covid_aktuell),stat = "identity", fill ="coral2") + 
   labs(x = "Datum", y = "faelle_covid_aktuell", title = "faelle_covid_aktuell_Bayern_mit_ohne_Muenchen")
 plot_bayern_mit_ohne_muenchen
+
+#data Anteil faelle_covid_aktuell Muenchen zu Bayern
+data_bayern_EM_faelle_covid_aktuell_aggregate<-aggregate(data_bayern_EM$faelle_covid_aktuell, data_bayern_EM[1], sum)
+View(data_bayern_EM_faelle_covid_aktuell_aggregate)
