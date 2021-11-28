@@ -1,5 +1,3 @@
-# anfaengerpraktikum
-grthnjfdjztm
 data1<-readRDS("/Users/fuxiao/Desktop/Anfängerpraktikum/data_lgl1 (1).rds")
 data1_muenchen<-subset(data1,MeldeLandkreis=="SK München")
 View(data1_muenchen)
