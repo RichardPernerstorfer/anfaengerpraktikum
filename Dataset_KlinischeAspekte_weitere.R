@@ -12,10 +12,7 @@ list2env(data_list, .GlobalEnv)
 
 
 
-
-
-
-########## Data umstrukturieren:
+####### Data umstrukturieren:
 
 
 
@@ -34,7 +31,10 @@ colnames(Klinische_Aspekte) <- gsub(colnames(Klinische_Aspekte), pattern = ")", 
 Klinische_Aspekte <- filter(Klinische_Aspekte, MW != "0")
 Klinische_Aspekte <- filter(Klinische_Aspekte, MW != "MW")
 
+# Umwandeln
 
+Klinische_Aspekte$Maenner <- as.numeric(Klinische_Aspekte$Maenner)
+Klinische_Aspekte$Frauen <- as.numeric(Klinische_Aspekte$Frauen)
 
 
 
