@@ -18,19 +18,19 @@ mean_muc_nov_covfaelle
 
 ### Mittelwert Intensiv beatmet in Muenchen
 
-mean_muc_aug_invbeatmet <- mean(data_muc_aug$faelle_covid_aktuell_invasiv_beatmet)
+mean_muc_aug_invbeatmet <- mean(data_muc_aug$faelle_covid_aktuell_invasiv_beatmet)  ## 4.9
 mean_muc_aug_invbeatmet
 
 
-mean_muc_sep_invbeatmet <- mean(data_muc_sep$faelle_covid_aktuell_invasiv_beatmet)
+mean_muc_sep_invbeatmet <- mean(data_muc_sep$faelle_covid_aktuell_invasiv_beatmet)  ## 8.1
 mean_muc_sep_invbeatmet
 
 
-mean_muc_oct_invbeatmet <- mean(data_muc_oct$faelle_covid_aktuell_invasiv_beatmet)
+mean_muc_oct_invbeatmet <- mean(data_muc_oct$faelle_covid_aktuell_invasiv_beatmet)  ## 9.5
 mean_muc_oct_invbeatmet
 
 
-mean_muc_nov_invbeatmet <- mean(data_muc_nov$faelle_covid_aktuell_invasiv_beatmet)
+mean_muc_nov_invbeatmet <- mean(data_muc_nov$faelle_covid_aktuell_invasiv_beatmet)  ## 52.3
 mean_muc_nov_invbeatmet
 
 
@@ -44,15 +44,22 @@ cor(data_muc_sep$faelle_covid_aktuell , data_muc_sep$faelle_covid_aktuell_invasi
 ## Einseitigen Test
 cor.test(data_muc_sep$faelle_covid_aktuell , data_muc_sep$faelle_covid_aktuell_invasiv_beatmet)
 
-##Positiven Zsmhang berechnen (einseitigen Test)
+## Positiven Zsmhang berechnen (einseitigen Test)
 cor.test(data_muc_sep$faelle_covid_aktuell , data_muc_sep$faelle_covid_aktuell_invasiv_beatmet, alternative = "greater")
 
-### A:  starker Zusammenhang !!!
+## A:  starker Zusammenhang !!!
+
+
+
+## Plot: 
+
+scatter_plot_muc <- ggplot(data_CorDemo_muenchen, aes(betten_belegt, faelle_covid_aktuell_invasiv_beatmet))
+scatter_plot_muc + geom_point() + labs(x = "Betten Belegt", y = " Aktuell an Covid Invasiv Beatmet") + geom_smooth(method="lm")
 
 
 
 
-### Korrelation zwischen Covid Fälle und Intensiv Beatmet in Muenchen October
+
 
 
 
