@@ -125,7 +125,6 @@ ggplot(data = data_CorDemo_bayern_covfaelle_aggregate, aes(x=date, y=x)) +
 
 
 
-
 ### Sonstige 
 
 
