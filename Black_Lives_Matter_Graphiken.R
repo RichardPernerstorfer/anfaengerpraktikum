@@ -30,6 +30,7 @@ plot_muenchen_bayern + plot_annotation(
   title = "Aktuelle Covid-Fälle zwischen Mai und August 2020", 
   subtitle = "Bestätigte Covid-19 Fälle in München und Bayern um die Black Lives Matter Demonstration"
 )
+
 plot_muenchen_bayern
 
 
@@ -37,6 +38,7 @@ plot_muenchen_bayern
 
 plot_anteil_muenchen_bayern <- ggplot( data = data_BLM_muenchen, aes(x = date, y = anteil)) +
   geom_line() + 
+  geom_point(size = 0.8) +
   ggtitle("Anteil der Covid-Fälle Münchens in gesamt Bayern") + xlab("Datum") + ylab("Anteil Covid-Fälle") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
   scale_x_date(date_breaks = "2 week", date_labels = "%b %d")
@@ -47,6 +49,7 @@ plot_anteil_muenchen_bayern
 
 plot_anteil_betten_muc_bay <- ggplot( data = data_BLM_muenchen, aes(x = date, y = anteil_betten)) +
   geom_line() +
+  geom_point(size = 0.8) +
   ggtitle("Anteil der belegten Betten Münchens in gesamt Bayern") + xlab("Datum") + ylab("Anteil belegter Betten") + 
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
   scale_x_date(date_breaks = "2 week", date_labels = "%b %d")
