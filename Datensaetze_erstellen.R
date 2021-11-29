@@ -7,6 +7,7 @@ library(readr)
 
 divi_17_11<- read_csv("DIVI-Intensivregister_2021-11-17_12-15.csv")
 
+
 ### Datensatz überprüfen
 
 fehlendeWerte <- table(is.na(divi_17_11))
@@ -14,7 +15,6 @@ fehlendeWerte[[TRUE]]  # Beachtung bei Berechnungen
 
 
 ### Neue Spalte betten_anteil gibt prozentualen Anteil der belegten Betten
-
 
 divi_17_11$betten_anteil <- divi_17_11$betten_belegt / (divi_17_11$betten_frei + divi_17_11$betten_belegt)
 
@@ -28,9 +28,10 @@ data_muenchen <- subset(data_bayern, gemeindeschluessel == "09162")
 
 
 ### Neue Spalte faelle_covid_anteil gibt prozentualen Anteil von Corona Infizierten zur Gesasamtbevölkerung Münchens
-## Zahl der Bevölkerung aus https://de.wikipedia.org/wiki/M%C3%BCnchen (Zuletzt aufgerufen 23.11.2021)
+### Zahl der Bevölkerung aus https://de.wikipedia.org/wiki/M%C3%BCnchen (Zuletzt aufgerufen 23.11.2021)
 
 data_muenchen$faelle_covid_anteil <- data_muenchen$faelle_covid_aktuell / 1488202  # Stand: 31. Dez. 2020
+
 
 ### Datensatz IAA Deutschlandweit
 
@@ -40,6 +41,7 @@ data_IAA_muenchen <- subset(data_muenchen, date >= "2021-08-07" & date <= "2021-
 data_IAA_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "2021-08-07" & date <= "2021-11-12" )
 data_IAA_anteil_muenchen_bayern$anteil <- data_IAA_muenchen$faelle_covid_aktuell/ (aggregate(data_IAA_bayern$faelle_covid_aktuell, data_IAA_bayern[1], sum))[2]
 data_IAA_anteil_muenchen_bayern$date <- data_IAA_muenchen$date
+
 
 ### Datensatz Corona Demonstration
 
@@ -70,6 +72,8 @@ data_BLM_bayern <- subset(data_bayern, date >= "2020-05-06" & date <= "2020-08-0
 data_BLM_muenchen <- subset(data_muenchen, date >= "2020-05-06" & date <= "2020-08-06" )
 data_BLM_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "2020-05-06" & date <= "2020-05-06" )
 data_BLM_muenchen$anteil <- as.vector(unlist(data_BLM_muenchen$faelle_covid_aktuell/ (aggregate(data_BLM_bayern$faelle_covid_aktuell, data_BLM_bayern[1], sum))[2]))
+data_BLM_muenchen$anteil_betten <- as.vector(unlist(data_BLM_muenchen$betten_belegt/ (aggregate(data_BLM_bayern$betten_belegt, data_BLM_bayern[1], sum)[2])))
+
 
 ## Gelsenkirchen
 
@@ -78,6 +82,7 @@ data_gelsenkirchen <- subset(data_nordrheinwestfalen, gemeindeschluessel == "055
 data_gelsenkirchen$faelle_covid_anteil <- data_gelsenkirchen$faelle_covid_aktuell/262073
 data_BLM_gelsenkirchen <- subset(data_gelsenkirchen, date >= "2020-05-06" & date <= "2020-08-06" )
 data_BLM_gelsenkirchen_muenchen <- rbind(data_BLM_muenchen,data_BLM_gelsenkirchen)
+
 
 ## Passau
 
