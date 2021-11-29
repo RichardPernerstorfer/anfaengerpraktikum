@@ -69,8 +69,7 @@ data_BLM_germany <- subset(divi_17_11, date >= "2020-05-06" & date <= "2020-08-0
 data_BLM_bayern <- subset(data_bayern, date >= "2020-05-06" & date <= "2020-08-06" )
 data_BLM_muenchen <- subset(data_muenchen, date >= "2020-05-06" & date <= "2020-08-06" )
 data_BLM_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "2020-05-06" & date <= "2020-05-06" )
-data_BLM_muenchen$anteil <- data_BLM_muenchen$faelle_covid_aktuell/ (aggregate(data_BLM_bayern$faelle_covid_aktuell, data_BLM_bayern[1], sum))[2]
-data_BLM_anteil_muenchen_bayern$date <- data_BLM_muenchen$date
+data_BLM_muenchen$anteil <- as.vector(unlist(data_BLM_muenchen$faelle_covid_aktuell/ (aggregate(data_BLM_bayern$faelle_covid_aktuell, data_BLM_bayern[1], sum))[2]))
 
 ## Gelsenkirchen
 
