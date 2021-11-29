@@ -2,9 +2,6 @@
 
 library(readr)
 
-### data_lgl
-
-data_lgl <- read_rds("data_lgl1 (1).rds")
 
 ##  Divi Datensatz
 
