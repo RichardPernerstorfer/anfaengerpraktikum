@@ -82,7 +82,7 @@ Alter_Median_Mittelwert$Meldewoche.1 <- NULL
  as.data.frame(Fälle_Hospitalisierung_Alter)
 
 ## Spalten umbenennen
-colnames(Fälle_Hospitalisierung_Alter) <- c("Meldejahr", "Meldewoche", "A0_bis_A4", "A5_bis_A15", "A15_bis_A34", "A35_bis_A59", "A60_bis_A79", "A80_plus")
+colnames(Fälle_Hospitalisierung_Alter) <- c("Meldejahr", "Meldewoche", "A0_bis_A4", "A5_bis_A15", "A15_bis_A34", "A35_bis_A59", "A60_bis_A79", "A80_plus", "date")
 
 ## Reihen löschen
 Fälle_Hospitalisierung_Alter <- Fälle_Hospitalisierung_Alter[-c(1:4), ]
