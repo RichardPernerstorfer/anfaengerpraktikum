@@ -80,7 +80,12 @@ Alter_Median_Mittelwert$Meldewoche.1 <- NULL
 ## 4. Fälle_Hospitialisierung_Alter
 
  as.data.frame(Fälle_Hospitalisierung_Alter)
-
+Fälle_Hospitalisierung_Alter$A0_bis_A4 <- as.numeric(Fälle_Hospitalisierung_Alter$A0_bis_A4)
+Fälle_Hospitalisierung_Alter$A5_bis_A15 <- as.numeric(Fälle_Hospitalisierung_Alter$A5_bis_A15)
+Fälle_Hospitalisierung_Alter$A15_bis_A34 <- as.numeric(Fälle_Hospitalisierung_Alter$A15_bis_A34)
+Fälle_Hospitalisierung_Alter$A35_bis_A59 <- as.numeric(Fälle_Hospitalisierung_Alter$A35_bis_A59)
+Fälle_Hospitalisierung_Alter$A60_bis_A79 <- as.numeric(Fälle_Hospitalisierung_Alter$A60_bis_A79)
+Fälle_Hospitalisierung_Alter$A80_plus <- as.numeric(Fälle_Hospitalisierung_Alter$A80_plus)
 ## Spalten umbenennen
 colnames(Fälle_Hospitalisierung_Alter) <- c("Meldejahr", "Meldewoche", "A0_bis_A4", "A5_bis_A15", "A15_bis_A34", "A35_bis_A59", "A60_bis_A79", "A80_plus", "date")
 
