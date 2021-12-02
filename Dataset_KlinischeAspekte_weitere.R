@@ -89,9 +89,12 @@ Fälle_Hospitalisierung_Alter$A15_bis_A34 <- as.numeric(Fälle_Hospitalisierung_
 Fälle_Hospitalisierung_Alter$A35_bis_A59 <- as.numeric(Fälle_Hospitalisierung_Alter$A35_bis_A59)
 Fälle_Hospitalisierung_Alter$A60_bis_A79 <- as.numeric(Fälle_Hospitalisierung_Alter$A60_bis_A79)
 Fälle_Hospitalisierung_Alter$A80_plus <- as.numeric(Fälle_Hospitalisierung_Alter$A80_plus)
+Fälle_Hospitalisierung_Alter$Meldejahr <- as.numeric(Fälle_Hospitalisierung_Alter$Meldejahr)
+Fälle_Hospitalisierung_Alter$Meldewoche <- as.numeric(Fälle_Hospitalisierung_Alter$Meldewoche)
+Fälle_Hospitalisierung_Alter$A5_bis_A15[17] <- 0
 ## Reihen löschen
 Fälle_Hospitalisierung_Alter <- Fälle_Hospitalisierung_Alter[-c(1:4), ]
-Fälle_Hospitalisierung_Alter
+
 
 
 
