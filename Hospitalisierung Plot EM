@@ -36,3 +36,30 @@ line_plot_muenchen_EM_Altersgruppe<-ggplot(data1_muenchen_EM,aes(x=Meldedatum,y=
            xmin = as.Date(c("2021-06-11")), xmax = as.Date(c("2021-7-11")),
            ymin = 0, ymax = Inf)
 line_plot_muenchen_EM_Altersgruppe
+
+##bar plot gruppiert nach Altersgruppe
+#muenchen
+bar_plot_muenchen_EM_Altersgruppe<-ggplot(data1_muenchen_EM,aes(x=Meldedatum,y=Hospitalisierung,fill=Altersgruppe))+
+  geom_bar(stat = "identity")+
+  labs(x="Datum",y="Anzahl der Hospitalisierungen absolut",title = "Hospitalisierungen in München um EM")+
+  annotate("rect", fill = "pink", alpha = 0.4, 
+           xmin = as.Date(c("2021-06-11")), xmax = as.Date(c("2021-7-11")),
+           ymin = 0, ymax = Inf)+
+  scale_x_date(date_breaks = "2 week")+
+  theme(text = element_text(size=8),axis.text.x=element_text(angle=50, hjust=1))+
+  bar_plot_muenchen_EM_Altersgruppe
+
+#Bayern
+bar_plot_bayern_EM_Altersgruppe<-ggplot(data1_EM,aes(x=Meldedatum,y=Hospitalisierung,fill=Altersgruppe))+
+  geom_bar(stat = "identity")+
+  labs(x="Datum",y="Anzahl der Hospitalisierungen absolut",title = "Hospitalisierungen in Bayern um EM")+
+  annotate("rect", fill = "pink", alpha = 0.4, 
+           xmin = as.Date(c("2021-06-11")), xmax = as.Date(c("2021-7-11")),
+           ymin = 0, ymax = Inf)+
+  scale_x_date(date_breaks = "2 week")+
+  theme(text = element_text(size=8),axis.text.x=element_text(angle=50, hjust=1))+
+  bar_plot_bayern_EM_Altersgruppe
+
+ggarrange(bar_plot_bayern_EM_Altersgruppe, bar_plot_muenchen_EM_Altersgruppe,
+          ncol = 2, nrow = 1)
+
