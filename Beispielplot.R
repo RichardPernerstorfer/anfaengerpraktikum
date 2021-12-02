@@ -1,5 +1,5 @@
 library(ggplot2)
-Fälle_Hospitalisierung_Alter$A5_bis_A15[13] <- 0
+
 ggplot() + 
   geom_line(aes(x = date, y = A0_bis_A4, group = 1, color = "Altergruppe 0 bis 4"), size = 2, data = Fälle_Hospitalisierung_Alter) +
   geom_line(aes(x = date, y = A5_bis_A15, group = 1, color = "Altergruppe 5 bis 15"), size = 2, data = Fälle_Hospitalisierung_Alter) +
