@@ -9,6 +9,11 @@ vaccination_timeseries <- read.table(file='germany_vaccinations_timeseries_v2.ts
 colnames(vaccination_timeseries) <- as.character(vaccination_timeseries[1,])
 vaccination_timeseries <- vaccination_timeseries[-1, ]
 
+## Formatierung Date
+myformat2<-"%Y-%m-%d"
+vaccination_timeseries$date<-as.Date(vaccination_timeseries$date,myformat2)
+View(vaccination_timeseries)
+
 
 
 ## RKI Datensatz Bayern
