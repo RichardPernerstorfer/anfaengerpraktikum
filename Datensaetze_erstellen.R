@@ -38,7 +38,7 @@ data_IAA_germany <- subset(divi_17_11, date >= "2021-08-07" & date <= "2021-11-1
 data_IAA_bayern <- subset(data_bayern, date >= "2021-08-07" & date <= "2021-11-12" )
 data_IAA_muenchen <- subset(data_muenchen, date >= "2021-08-07" & date <= "2021-11-12" )
 data_IAA_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "2021-08-07" & date <= "2021-11-12" )
-
+data_IAA_muenchen$anteil <- data_IAA_muenchen$faelle_covid_aktuell / as.vector(unlist(aggregate(data_IAA_bayern$faelle_covid_aktuell, data_IAA_bayern[1], sum)[2]))
 
 ### Datensatz Corona Demonstration
 
