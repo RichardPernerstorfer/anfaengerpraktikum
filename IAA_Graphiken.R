@@ -43,7 +43,7 @@ ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = date, y = faelle_covid_aktu
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
 # Fälle IAA Anteil München an Bayern
-ggplot(data = data_IAA_anteil_muenchen_bayern, aes(y = x, x = date)) + 
+ggplot(data = data_IAA_muenchen, aes(y = anteil, x = date)) + 
   geom_line() + 
   labs(x = "Datum", y = "Anteil aktueller Covid-Fälle", title = "Anteil der bayerischen Covid-Fälle von München") +
   annotate("rect", fill = "pink", alpha = 0.4, 
