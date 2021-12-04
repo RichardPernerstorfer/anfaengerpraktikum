@@ -1,5 +1,6 @@
 library(ggplot2)
 library(lubridate)
+library(ggpubr)
 ### covid fälle um die IAA
 
 # Fälle IAA Deutschland
@@ -13,7 +14,7 @@ ggplot(data = data_IAA_germany, aes(x = date, y = faelle_covid_aktuell)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
 # Fälle IAA Bayern
-ggplot(data = data_IAA_bayern, aes(x = date, y = faelle_covid_aktuell)) +
+IAA_bayern_plot <- ggplot(data = data_IAA_bayern, aes(x = date, y = faelle_covid_aktuell)) +
   geom_bar(stat="identity") + 
   labs(x = "Datum", y = "aktuelle Covid-Fälle", title = "Aktuelle Covid-Fälle um die IAA bayernweit") +
   annotate("rect", fill = "pink", alpha = 0.4, 
@@ -21,9 +22,10 @@ ggplot(data = data_IAA_bayern, aes(x = date, y = faelle_covid_aktuell)) +
            ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week") + 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+IAA_bayern_plot
 
 # Fälle IAA München
-ggplot(data = data_IAA_muenchen, aes(x = date, y = faelle_covid_aktuell)) +
+IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = date, y = faelle_covid_aktuell)) +
   geom_bar(stat="identity") + 
   labs(x = "Datum", y = "aktuelle Covid-Fälle", title = "Aktuelle Covid-Fälle um die IAA in München") +
   annotate("rect", fill = "pink", alpha = 0.4, 
@@ -31,6 +33,10 @@ ggplot(data = data_IAA_muenchen, aes(x = date, y = faelle_covid_aktuell)) +
            ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week") + 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+IAA_muenchen_plot
+
+#Zusammenhängende Grafik
+ggarrange(IAA_bayern_plot, IAA_muenchen_plot, nrow = 2)
 
 # Fälle IAA Bayern ohne München
 ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = date, y = faelle_covid_aktuell)) +
@@ -43,7 +49,7 @@ ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = date, y = faelle_covid_aktu
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
 # Fälle IAA Anteil München an Bayern
-ggplot(data = data_IAA_anteil_muenchen_bayern, aes(y = x, x = date)) + 
+ggplot(data = data_IAA_muenchen, aes(y = anteil, x = date)) + 
   geom_line() + 
   labs(x = "Datum", y = "Anteil aktueller Covid-Fälle", title = "Anteil der bayerischen Covid-Fälle von München") +
   annotate("rect", fill = "pink", alpha = 0.4, 
