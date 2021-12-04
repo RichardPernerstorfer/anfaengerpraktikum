@@ -22,3 +22,12 @@ install.packages("vroom")
 library(vroom)
 
 rki_bayern_data <- vroom('RKI_COVID19_Bayern.zip')
+
+## Nach Datum sortieren
+rki_bayern_data[order(as.Date(rki_bayern_data$Meldedatum, format="%Y/%m/%d")),]
+
+
+                      
+
+
+
