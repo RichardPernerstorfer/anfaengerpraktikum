@@ -1,9 +1,8 @@
 library(ggplot2)
 
-###Plot Deutschland Infektion vs Impfquote
-#(data2 hier ist DIVI-Daten)
+###Plot Deutschland Covid-Fälle vs Impfquote
 
-plot_deutschland_covid_faelle<-ggplot(data = data2)+
+plot_deutschland_covid_faelle<-ggplot(data = divi_17_11)+
   geom_bar(aes(x=date,y=faelle_covid_aktuell),stat="identity")+
   scale_x_date(date_labels = "%b %d",date_breaks = "4 week")+
   theme(axis.text.x=element_text(angle=50, hjust=1))+
@@ -12,12 +11,12 @@ plot_deutschland_covid_faelle<-ggplot(data = data2)+
 plot_deutschland_covid_faelle
 
 #Subset data vor/nach der Impfung
-deutschland_vor_impfung<-subset(data2,date<="2020-12-27")
+deutschland_vor_impfung<-subset(divi_17_11,date<="2020-12-27")
 View(deutschland_vor_impfung)
-deutschland_nach_impfung<-subset(data2,date>="2020-12-27")
+deutschland_nach_impfung<-subset(divi_17_11,date>="2020-12-27")
 View(deutschland_nach_impfung)
 
-deutschland_vor_impfung<-subset(data2,date<="2020-12-27")
+deutschland_vor_impfung<-subset(divi_17_11,date<="2020-12-27")
 View(deutschland_vor_impfung)
 
 #Plot Covid-Fälle vor der Impfung
@@ -57,5 +56,3 @@ plot_impfquote
 library(ggpubr)
 ggarrange(plot_deutschland_covid_faelle_vor_impfung,plot_deutschland_covid_faelle_nach_impfung, plot_impfquote,
           ncol = 1, nrow = 3)
-
-
