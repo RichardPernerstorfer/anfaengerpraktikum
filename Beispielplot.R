@@ -46,3 +46,24 @@ ggplot() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) + 
   labs(x = "Datum in Kalenderwochen", y = "Covid-Fälle", title = "Covid-Fälle pro Altersgruppe in Deutschland", color = "Altersgruppen") +
   theme(text = element_text(size = 15)) 
+
+
+##  Allgemein Bayern Fälle mit Events eingezeichnet
+
+ggplot(data = data_bayern, aes(x = date, y = faelle_covid_aktuell)) +
+  ggtitle("Corona Fälle in Bayern") +
+  xlab("Datum") + ylab("Aktuelle Covid Fälle") + 
+  geom_bar(stat="identity") + 
+  scale_x_date( date_labels = "%b %d", date_breaks = "2 week") +
+  theme(axis.text.x=element_text(angle=50, hjust=1))+
+  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red2", size = 1) +
+  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
+  annotate("rect", fill = "red", alpha = 0.4, 
+           xmin = as.Date(c("2021-06-11")), xmax = as.Date(c("2021-07-11")),
+           ymin = 0, ymax = Inf) +
+  theme(axis.text.x = element_text(size = 12, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 12)) +
+  theme(text = element_text(size = 40)) +
+  annotate("rect", fill = "red", alpha = 0.4, 
+           xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
+           ymin = 0, ymax = Inf)  
