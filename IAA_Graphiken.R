@@ -3,7 +3,7 @@ library(lubridate)
 library(ggpubr)
 ### covid fälle um die IAA
 
-# Fälle IAA Deutschland
+# Fälle IAA Deutschland unused
 ggplot(data = data_IAA_germany, aes(x = date, y = faelle_covid_aktuell)) +
   geom_bar(stat="identity") + 
   labs(x = "Datum", y = "aktuelle Covid-Fälle", title = "Aktuelle Covid-Fälle um die IAA deutschlandweit") + 
@@ -38,7 +38,7 @@ IAA_muenchen_plot
 #Zusammenhängende Grafik
 ggarrange(IAA_bayern_plot, IAA_muenchen_plot, nrow = 2)
 
-# Fälle IAA Bayern ohne München
+# Fälle IAA Bayern ohne München unused
 ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = date, y = faelle_covid_aktuell)) +
   geom_bar(stat="identity") + 
   labs(x = "Datum", y = "aktuelle Covid-Fälle", title = "Aktuelle Covid-Fälle um die IAA in Bayern ohne München") +
