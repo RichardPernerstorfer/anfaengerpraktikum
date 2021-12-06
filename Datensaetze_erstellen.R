@@ -72,7 +72,7 @@ data_BLM_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "202
 
 ### Anteil München an Bayern
 data_BLM_muenchen$anteil <- data_BLM_muenchen$faelle_covid_aktuell / as.vector(unlist(aggregate(data_BLM_bayern$faelle_covid_aktuell, data_BLM_bayern[1], sum)[2]))
-
+data_BLM_muenchen$anteil_betten <- data_BLM_muenchen$betten_belegt / as.vector(unlist(aggregate(data_BLM_bayern$betten_belegt, data_BLM_bayern[1], sum)[2]))
 
 ### Datensatz für die Inzidenzen der einzelnen Bundesländer (Faelle_aktuell/Einwohnerzahl) * 100000
 
