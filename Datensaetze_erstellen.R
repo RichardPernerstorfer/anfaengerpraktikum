@@ -239,7 +239,8 @@ Todesfälle_Alter_Geschlecht[,8] <- as.factor(Todesfälle_Alter_Geschlecht[,8])
 Todesfälle_Alter_Geschlecht[,9] <- as.factor(Todesfälle_Alter_Geschlecht[,9])
 Todesfälle_Alter_Geschlecht[,10] <- as.factor(Todesfälle_Alter_Geschlecht[,10])
 Todesfälle_Alter_Geschlecht[,11] <- as.factor(Todesfälle_Alter_Geschlecht[,11])
-
-
+### Altersfälle Datensatz
+Hosp_data_bayern <- `data_lgl1 (1)`
+Hosp_data_bayern <- aggregate(Hosp_data_bayern[4], by = Hosp_data_bayern[1], FUN = sum)
 
 
