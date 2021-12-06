@@ -26,8 +26,7 @@ ggplot() +
   theme(text = element_text(size = 40)) +
   scale_x_discrete(guide = guide_axis(check.overlap = TRUE))
 
-Hosp_data_bayern <- `data_lgl1 (1)`
-Hosp_data_bayern <- aggregate(Hosp_data_bayern[4], by = Hosp_data_bayern[1], FUN = sum)
+
 
 ggplot(data = Hosp_data_bayern, mapping = aes(x = Meldedatum, y = Hospitalisierung/  130.7672)) +
   geom_col() +
