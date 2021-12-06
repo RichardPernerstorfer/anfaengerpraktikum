@@ -8,6 +8,7 @@ plot_BLM_bayern <- ggplot(data = data_BLM_bayern, aes(x = date, y = faelle_covid
   ggtitle("Bayern") +
   xlab("Datum") + ylab("Aktuelle Covid-Fälle") + geom_bar(stat="identity") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
+  geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 1) +
   scale_x_date(date_breaks = "2 week", date_labels = "%b %d")
 plot_BLM_bayern
 
@@ -18,6 +19,7 @@ plot_BLM_muenchen <- ggplot(data = data_BLM_muenchen, aes(x = date, y = faelle_c
   ggtitle("München") +
   xlab("Datum") + ylab("Aktuelle Covid-Fälle") + geom_bar(stat="identity") + 
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
+  geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 1) +
   scale_x_date(date_breaks = "2 week", date_labels = "%b %d")
 plot_BLM_muenchen
 
@@ -38,11 +40,13 @@ plot_muenchen_bayern
 ### Anteil Covid-Fälle München an Bayern
 
 plot_anteil_muenchen_bayern <- ggplot( data = data_BLM_muenchen, aes(x = date, y = anteil)) +
-  geom_line(size = 2) + 
+  geom_line() + 
   plot_annotation(title = "Event 1: Black Lives Matter Demonstration",
                   subtitle = "Anteil Covid-Fälle Münchens an Covid-Fälle Bayerns zwischen Mai und August 2020" ) + xlab("Datum") + ylab("Anteil Covid-Fälle") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
-  scale_x_date(date_breaks = "2 week", date_labels = "%b %d")
+  geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 1) +
+  scale_x_date(date_breaks = "2 week", date_labels = "%b %d") +
+  expand_limits(y = 0)
 plot_anteil_muenchen_bayern
 
 
@@ -50,20 +54,22 @@ plot_anteil_muenchen_bayern
 
 plot_anteil_betten_muc_bay <- ggplot( data = data_BLM_muenchen, aes(x = date, y = anteil_betten)) +
   geom_line() +
-  geom_point(size = 0.8) +
   ggtitle("Anteil der belegten Betten Münchens in gesamt Bayern") + xlab("Datum") + ylab("Anteil belegter Betten") + 
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
-  scale_x_date(date_breaks = "2 week", date_labels = "%b %d")
+  geom_vline(xintercept= as.Date(c("2020-06-13")), color = "violet", size = 1) +
+  scale_x_date(date_breaks = "2 week", date_labels = "%b %d") +
+  expand_limits(y = 0)
 plot_anteil_betten_muc_bay
 
 
 ### Bettenbelegung Bayern
 
 plot_betten_bayern <- ggplot() + 
-  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_BLM_bayern, stat = "identity", fill = "light green") + 
+  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_BLM_bayern, stat = "identity", fill = "blue") + 
   geom_bar(aes(y = betten_belegt, x = date), data = data_BLM_bayern, stat = "identity") + 
   labs(x = "Datum", y = "Intensivbetten absolut ", title = "Intensivbetten in Bayern") +
-  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
+  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
+  geom_vline(xintercept= as.Date(c("2020-06-13")), color = "violet", size = 2) +
   scale_x_date(date_breaks = "2 week", date_labels = "%b %d")
 
 plot_betten_bayern
@@ -71,10 +77,13 @@ plot_betten_bayern
 
 ### Belegte Betten München
 
-plot_betten_muenchen <- ggplot(data = data_BLM_muenchen, aes(x = date, y = betten_belegt)) +
+plot_betten_muenchen <- ggplot(data = data_BLM_muenchen) + 
+  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_BLM_muenchen, stat = "identity", fill = "blue") + 
+  geom_bar(aes(x = date, y = betten_belegt), stat = "identity") +
   ggtitle("Belegte Betten zwischen Mai und August 2020 in München ") +
-  xlab("Datum") + ylab("Belegte Betten") + geom_bar(stat="identity") +
-  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
+  xlab("Datum") + ylab("Belegte Betten") + 
+  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
+  geom_vline(xintercept= as.Date(c("2020-06-13")), color = "violet", size = 2) +
   scale_x_date(date_breaks = "2 week", date_labels = "%b %d")
 plot_betten_muenchen
 
@@ -85,7 +94,7 @@ plot_betten_muenchen
 
 
 
-
+### Old!
 
 ### Anteilige Infektionzahlen an Einwohnerzahl Muenchen
 
@@ -121,9 +130,6 @@ plot_rel_betten_bayern <- ggplot(data = data_BLM_bayern, aes(x = date, y = bette
   xlab("Datum") + ylab("Anteil belegter Betten") + geom_bar(stat="identity") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1)
 plot_rel_betten_bayern
-
-
-
 
 
 
