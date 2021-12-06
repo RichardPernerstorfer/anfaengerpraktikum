@@ -59,7 +59,7 @@ ggplot(data = data_IAA_muenchen, aes(y = anteil, x = date)) +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
            ymin = 0, ymax = Inf)  +
- annotate("rect", fill = "blue", alpha = 0.4, 
+ annotate("rect", fill = "skyblue1", alpha = 0.4, 
            xmin = as.Date(c("2021-09-14")), xmax = as.Date(c("2021-09-19")),
            ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week") + 
