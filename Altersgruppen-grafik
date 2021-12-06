@@ -1,12 +1,3 @@
 library(ggplot2)
 
-ggplot() + 
-  geom_line(aes(x = datum, y = A0_bis_A4, group = 1, color = "Altergruppe 0 bis 4"), data = Fälle_Hospitalisierung_Alter) +
-  geom_line(aes(x = datum, y = A5_bis_A15, group = 1, color = "Altergruppe 5 bis 15"), data = Fälle_Hospitalisierung_Alter) +
-  geom_line(aes(x = datum, y = A15_bis_A34, group = 1, color = "Altergruppe 15 bis 34"), data = Fälle_Hospitalisierung_Alter) +
-  geom_line(aes(x = datum, y = A35_bis_A59, group = 1, color = "Altergruppe 35 bis 59"), data = Fälle_Hospitalisierung_Alter) +
-  geom_line(aes(x = datum, y = A60_bis_A79, group = 1, color = "Altergruppe 60 bis 79"), data = Fälle_Hospitalisierung_Alter) +
-  geom_line(aes(x = datum, y = A80_plus, group = 1, color = "Altergruppe 80 +"), data = Fälle_Hospitalisierung_Alter) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) + 
-  labs(x = "Datum in Kalenderwochen", y = "Covid-Fälle", title = "Covid-Fälle pro Altersgruppe in Deutschland", color = "Altersgruppen") +
-  theme(text = element_text(size = 15)) 
+
