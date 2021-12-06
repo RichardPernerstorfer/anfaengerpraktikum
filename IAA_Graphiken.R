@@ -20,6 +20,9 @@ IAA_bayern_plot <- ggplot(data = data_IAA_bayern, aes(x = date, y = faelle_covid
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
            ymin = 0, ymax = Inf)  +
+annotate("rect", fill = "skyblue1", alpha = 0.4, 
+           xmin = as.Date(c("2021-09-14")), xmax = as.Date(c("2021-09-19")),
+           ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week") + 
  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
@@ -32,6 +35,9 @@ IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = date, y = faelle_c
   labs(x = "Datum", y = "aktuelle Covid-Fälle", title = "Aktuelle Covid-Fälle um die IAA in München") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
+           ymin = 0, ymax = Inf)  +
+annotate("rect", fill = "skyblue1", alpha = 0.4, 
+           xmin = as.Date(c("2021-09-14")), xmax = as.Date(c("2021-09-19")),
            ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week") + 
 theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
