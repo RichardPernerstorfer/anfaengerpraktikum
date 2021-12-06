@@ -70,7 +70,9 @@ ggplot() +
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
            ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week") + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
+ theme(text = element_text(size = 30))
 
 # belegte Intensivbetten Prozent
 ggplot(data = data_IAA_muenchen, aes(x = date, y = betten_anteil)) +
@@ -79,7 +81,9 @@ ggplot(data = data_IAA_muenchen, aes(x = date, y = betten_anteil)) +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
            ymin = 0, ymax = Inf)  +
-  scale_x_date(date_breaks = "1 week") + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+  scale_x_date(date_breaks = "1 week") +  
+theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
+ theme(text = element_text(size = 30))
 
   
