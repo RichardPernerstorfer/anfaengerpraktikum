@@ -73,24 +73,7 @@ data_BLM_bayern_ohne_muenchen  <- subset(data_bayern_ohne_muenchen, date >= "202
 ### Anteil München an Bayern
 data_BLM_muenchen$anteil <- data_BLM_muenchen$faelle_covid_aktuell / as.vector(unlist(aggregate(data_BLM_bayern$faelle_covid_aktuell, data_BLM_bayern[1], sum)[2]))
 
-
-## Gelsenkirchen
-
-data_nordrheinwestfalen <- subset(divi_17_11, bundesland == "05")
-data_gelsenkirchen <- subset(data_nordrheinwestfalen, gemeindeschluessel == "05513")
-data_gelsenkirchen$faelle_covid_anteil <- data_gelsenkirchen$faelle_covid_aktuell/262073
-data_BLM_gelsenkirchen <- subset(data_gelsenkirchen, date >= "2020-05-06" & date <= "2020-08-06" )
-data_BLM_gelsenkirchen_muenchen <- rbind(data_BLM_muenchen,data_BLM_gelsenkirchen)
-
-## Passau
-
-data_passau <- subset(data_bayern, gemeindeschluessel == "09262")
-data_passau$faelle_covid_anteil <- data_passau$faelle_covid_aktuell/52469
-data_BLM_passau <- subset(data_passau, date >= "2020-05-06" & date <= "2020-08-06")
-data_BML_alle_städte <- rbind(data_BLM_gelsenkirchen_muenchen, data_BLM_passau)
-
 #Allgemein
-
 
 ## Impfstoff Data
 
@@ -221,7 +204,6 @@ Fälle_Hospitalisierung_Alter <- Fälle_Hospitalisierung_Alter[-c(1:4), ]
 
 ## 5. Todesfälle_Alter_Geschlecht
 
-as.data.frame(Todesfälle_Alter_Geschlecht)
 
 # Spaltennamen
 colnames(Todesfälle_Alter_Geschlecht) <- Todesfälle_Alter_Geschlecht[4,]
