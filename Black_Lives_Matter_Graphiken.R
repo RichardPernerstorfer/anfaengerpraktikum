@@ -123,56 +123,18 @@ plot_rel_betten_bayern <- ggplot(data = data_BLM_bayern, aes(x = date, y = bette
 plot_rel_betten_bayern
 
 
-### Vergleich Gelsenkirchen-Muenchen
-
-### Absolute Infektionszahlen
-
-plot_gelsenkirchen_muenchen <- ggplot(data = data_BLM_gelsenkirchen_muenchen, aes(x = date, y = faelle_covid_aktuell, col = bundesland)) +
-  ggtitle("Infektionsgeschehen zwischen Juni und August in München") +
-  xlab("Datum") + ylab("Anzahl Infektionen") + geom_line() +
-  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1)
-plot_gelsenkirchen_muenchen
 
 
-### Anteil Infektionszahlen an Einwohneranzahl beider Städte
-
-plot_rel_gelsenkirchen_muenchen <- ggplot(data = data_BLM_gelsenkirchen_muenchen, aes(x = date, y = faelle_covid_anteil, col = bundesland)) +
-  ggtitle("Infektionsgeschehen zwischen Juni und August in München") +
-  xlab("Datum") + ylab("Anzahl Infektionen") + geom_line() +
-  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1)
-plot_rel_gelsenkirchen_muenchen
 
 
-plot_betten <-  ggplot(data = data_BLM_gelsenkirchen_muenchen, aes(x = bundesland, y = betten_anteil, col = bundesland)) +
-  ggtitle("Infektionsgeschehen zwischen Juni und August in München") +
-  xlab("Datum") + ylab("Anzahl Infektionen") + geom_boxplot() 
-plot_betten
 
 
-### Vergleich Passau, München, Gelsenkirchen
-
-plot_rel_gelsenkirchen_muenchen_passau <- ggplot(data = data_BLM_alle_städte, aes(x = date, y = faelle_covid_anteil, col = gemeindeschluessel)) +
-  ggtitle("Infektionsgeschehen zwischen Juni und August in München") +
-  xlab("Datum") + ylab("Anzahl Infektionen") + geom_bar(stat = "identity") +
-  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 0.25)
-
-plot_rel_gelsenkirchen_muenchen_passau
 
 
-### Vergleich Betten Passau,München,Gelsenkirchen
-
-plot_betten_gelsenkirchen_muenchen_passau <- ggplot(data = data_BLM_alle_städte, aes(x = date, y = betten_anteil, col = gemeindeschluessel)) +
-  ggtitle("Infektionsgeschehen zwischen Juni und August in München") +
-  xlab("Datum") + ylab("Anzahl Infektionen") + geom_line(size = 0.5) +
-  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 0.25)
-
-plot_betten_gelsenkirchen_muenchen_passau
 
 
-plot_gelsenkirchen_muenchen_passau <- ggplot(data = data_BLM_alle_städte, aes(x = date, y = faelle_covid_aktuell, col = gemeindeschluessel)) +
-  ggtitle("Infektionsgeschehen zwischen Juni und August in München") +
-  xlab("Datum") + ylab("Anzahl Infektionen") + geom_line() +
-  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1)
-plot_gelsenkirchen_muenchen_passau
 
-plot_gelsenkirchen_muenchen_passau
+
+
+
+
