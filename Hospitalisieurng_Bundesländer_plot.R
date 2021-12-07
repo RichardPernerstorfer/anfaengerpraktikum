@@ -57,7 +57,34 @@ hosp <- ggplot() +
   
 hosp
 
-# Plot
+##Plot 2 nur Bayern Highlight
+library(tidyverse)
+
+ ggplot() + 
+  geom_line(aes(x = date, y =  med_adj_rate, color = state, group = state), size = 2, data = icu_baden_württemberg)+
+  geom_line(aes(x = date, y =  med_adj_rate, color = state,group = state), size = 2, data = icu_hessen)+
+  geom_line(aes(x = date, y =   med_adj_rate, color = state,group = state), size = 2, data = icu_mecklenburg_vorpommern)+
+  geom_line(aes(x = date, y =   med_adj_rate, color = state,group = state), size = 2, data = icu_nordrhein_westfalen)+
+  geom_line(aes(x = date, y =   med_adj_rate , color = state,group = state), size = 2, data = icu_rheinland_pfalz)+
+  geom_line(aes(x = date, y =   med_adj_rate , color = state,group = state), size = 2, data = icu_saarland)+
+  geom_line(aes(x = date, y =   med_adj_rate, color = state,group = state), size = 2, data = icu_sachsen)+
+  geom_line(aes(x = date, y =   med_adj_rate, color = state,group = state), size = 2, data = icu_sachsen_anhalt)+
+  geom_line(aes(x = date, y =  med_adj_rate , color = state,group = state), size = 2, data = icu_thuringen)+
+  geom_line(aes(x = date, y =  med_adj_rate , color = state,group = state), size = 2, data = icu_Berlin_Brandenburg)+
+  geom_line(aes(x = date, y = med_adj_rate, color = state,group = state), size = 2, data = icu_Hamburg_SchleswigHolstein)+
+  geom_line(aes(x = date, y =  med_adj_rate, color = state,group = state), size = 2, data = icu_Bremen_Niedersachsen)+
+  geom_line(aes(x = date, y =   med_adj_rate, color = state,group = state), size = 2, data = icu_bayern) +
+  scale_x_date( date_breaks = "1 month") +
+  ggtitle("Anzahl der Patienten in ICU in verschiedenen Bundesländer pro Tag ") +
+  xlab("Datum") + ylab(" Anzahl der Patienten auf der Intensivstation pro 100.000") +
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1)) + 
+
+  gghighlight(icu_bayern, state == "Bayern", use_direct_label = FALSE)+
+ gghighlight(icu_sachsen, state == "Sachsen", use_direct_label = FALSE)
+  
   
 
 
