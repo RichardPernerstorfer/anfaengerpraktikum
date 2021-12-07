@@ -104,7 +104,7 @@ inzidenz_bundeslaender <- cbind(dates, bundeslaender,inzidenz)
 inzidenz_bundeslaender <- as.data.frame(inzidenz_bundeslaender)
 
 inzidenz_bundeslaender <- inzidenz_bundeslaender[order( inzidenz_bundeslaender[,2] ),]
-inzidenz_bundeslaender[,1] <- as.Date(bundesländer_inzidenz[,1], "%Y-%m-%d")
+inzidenz_bundeslaender[,1] <- as.Date(inzidenz_bundeslaender[,1], "%Y-%m-%d")
 inzidenz_bundeslaender[,3] <- as.numeric(inzidenz_bundeslaender[,3])
 
 
