@@ -1,29 +1,24 @@
 ### Corona Demonstration Graphiken
 
 library(ggplot2)
-library(lubridate)
-
+library(patchwork)
+library(ggpubr)
 
 ### Barplot Covid Faelle ganz von August bis September
 
 # Muenchen
 
 plot_Cordemo_muenchen <- ggplot(data = data_CorDemo_muenchen, aes(x = date, y = faelle_covid_aktuell))  +
-  ggtitle("Corona Fälle in München um Corona Demonstration ") +
-  xlab("Datum") + ylab("Aktuelle Covid Fälle") + 
-  geom_bar(stat="identity")  +
-  scale_x_date( date_labels = "%b %d", date_breaks = "1 week") +
-  theme(axis.text.x=element_text(angle=50, hjust=1)) +
-  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red2", size = 1) +
-  annotate("rect", fill = "pink3", alpha = 0.4, 
-           xmin = as.Date(c("2020-09-12")), xmax = as.Date(c("2020-09-19")),
-           ymin = 0, ymax = Inf) +
-  theme(axis.text.x = element_text(size = 12, face = "bold")) + 
-  theme(axis.text.y = element_text(size = 12)) +
-  theme(text = element_text(size = 40)) +
-  annotate("rect", fill = "red3", alpha = 0.4, 
-           xmin = as.Date(c("2020-09-19")), xmax = as.Date(c("2020-09-26")),
-           ymin = 0, ymax = Inf) 
+  ggtitle("Covid Fälle in München um Corona Demonstration ") +
+  xlab("Datum") + ylab("Aktuelle Covid Fälle") +  geom_bar(stat="identity")  +
+  scale_x_date( date_breaks = "1 week") +
+  theme(axis.text.x=element_text(angle = 45, hjust=1)) +
+  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 1) + 
+  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "blue", size = 1) +
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) 
+
 
 plot_Cordemo_muenchen
 
@@ -31,21 +26,16 @@ plot_Cordemo_muenchen
 # Bayern
 
 plot_Cordemo_bayern <- ggplot(data = data_CorDemo_bayern, aes(x = date, y = faelle_covid_aktuell)) +
-  ggtitle("Corona Fälle in Bayern um Corona Demonstration") +
+  ggtitle("Covid Fälle in Bayern um Corona Demonstration") +
   xlab("Datum") + ylab("Aktuelle Covid Fälle") + 
   geom_bar(stat="identity") + 
-  scale_x_date( date_labels = "%b %d", date_breaks = "1 week") +
-  theme(axis.text.x=element_text(angle=50, hjust=1))+
-  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red2", size = 1) +
-  annotate("rect", fill = "pink3", alpha = 0.4, 
-           xmin = as.Date(c("2020-09-12")), xmax = as.Date(c("2020-09-19")),
-           ymin = 0, ymax = Inf) +
-  theme(axis.text.x = element_text(size = 12, face = "bold")) + 
-  theme(axis.text.y = element_text(size = 12)) +
-  theme(text = element_text(size = 40)) +
-  annotate("rect", fill = "red3", alpha = 0.4, 
-           xmin = as.Date(c("2020-09-19")), xmax = as.Date(c("2020-09-26")),
-           ymin = 0, ymax = Inf) 
+  scale_x_date( date_breaks = "1 week") +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1))+
+  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 1) +
+  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "blue", size = 1) +
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) 
 
 plot_Cordemo_bayern
 
@@ -62,14 +52,16 @@ ggplot_muc_bayern_cordemo
 
 # Belegte Intensivbetten in Bayern (absolut)
 plot_betten_bayern_Cordemo <- ggplot() + 
-  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_CorDemo_bayern, stat = "identity", fill = "royalblue") + 
+  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_CorDemo_bayern, stat = "identity", fill = "blue") + 
   geom_bar(aes(y = betten_belegt, x = date), data = data_CorDemo_bayern, stat = "identity") + 
   labs(x = "Datum", y = "Intensivbetten absolut ", title = "Belegte Intensivbetten in Bayern um Corona Demonstration") +
-  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 1) +
-  scale_x_date(date_breaks = "1 week", date_labels = "%b %d") +
-  theme(axis.text.x = element_text(size = 12, face = "bold")) + 
-  theme(axis.text.y = element_text(size = 12)) +
-  theme(text = element_text(size = 40)) 
+  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 2) +
+  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) +
+  scale_x_date(date_breaks = "1 week") +
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1))
 
 plot_betten_bayern_Cordemo
 
@@ -79,7 +71,13 @@ plot_betten_bayern_Cordemo
 ggplot(data = data_CorDemo_muenchen, aes(x = date, y = betten_anteil)) +
   geom_line(stat="identity", size = 2) + 
   labs(x = "Datum", y = "Anteil belegter Intensivbetten ", title = "Anteil belegter Intensivbetten in München um Corona Demonstration ") +
-  scale_x_date(date_breaks = "1 week" ) 
+  scale_x_date(date_breaks = "1 week" ) +
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1)) +
+  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 2) +
+  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) 
 
 
 
@@ -96,21 +94,16 @@ data_CorDemo_muenchen_anteil_covfaelle_aktuell
 
 #Plot
 ggplot(data = data_CorDemo_bayern_covfaelle_aggregate, aes(x = date, y = x)) +
-  geom_line(stat = "identity") +
-  labs(x = "Datum" , y = "Anteil aktueller Covid-Fälle", title = " Relative Häufigkeit der bayrischen Covid-Fälle von München um Corona-Demonstration") +
-  scale_x_date(date_breaks = "1 week" , date_labels = "%b %d") +
+  geom_line(stat = "identity", size = 2) +
+  labs(x = "Datum" , y = "Anteil aktueller Covid-Fälle", title = " Anteil der bayrischen Covid-Fälle von München um Corona-Demonstration") +
+  scale_x_date(date_breaks = "1 week") +
   geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 1) +
-  theme(axis.text.x = element_text(size = 12, face = "bold")) + 
-  theme(axis.text.y = element_text(size = 12)) +
-  theme(text = element_text(size = 40)) +
-  annotate("rect", fill = "pink3", alpha = 0.4, 
-           xmin = as.Date(c("2020-09-12")), xmax = as.Date(c("2020-09-19")),
-           ymin = 0, ymax = Inf) +
-  
-  annotate("rect", fill = "red3", alpha = 0.4, 
-           xmin = as.Date(c("2020-09-19")), xmax = as.Date(c("2020-09-26")),
-           ymin = 0, ymax = Inf) 
-  
+  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) +
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1))
+ 
   
 
 
