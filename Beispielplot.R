@@ -53,19 +53,32 @@ ggplot() +
 ##  Allgemein Bayern Fälle mit Events eingezeichnet
 
 ggplot(data = data_bayern, aes(x = date, y = faelle_covid_aktuell)) +
-  ggtitle("Corona Fälle in Bayern") +
+  ggtitle("Covid Fälle in Bayern") +
   xlab("Datum") + ylab("Aktuelle Covid Fälle") + 
   geom_bar(stat="identity") + 
-  scale_x_date( date_labels = "%b %d", date_breaks = "2 week") +
+  scale_x_date( date_breaks = "1 month") +
   theme(axis.text.x=element_text(angle=50, hjust=1))+
   geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red2", size = 1) +
+  geom_text(aes(x=as.Date(c("2020-09-12")), label="Corona-Demonstration", y = 750), colour="blue", angle=90, vjust = 1.2, text = element_text(size=10))+
+  
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 1) +
+  geom_text(aes(x=as.Date(c("2020-06-06")), label="BLM-Demonstration", y = 750), colour="blue", angle=90, vjust = 1.2, text = element_text(size=10))+
+  
   annotate("rect", fill = "red", alpha = 0.4, 
            xmin = as.Date(c("2021-06-11")), xmax = as.Date(c("2021-07-11")),
            ymin = 0, ymax = Inf) +
-  theme(axis.text.x = element_text(size = 12, face = "bold")) + 
-  theme(axis.text.y = element_text(size = 12)) +
-  theme(text = element_text(size = 40)) +
+  geom_vline(xintercept= as.Date(c("2021-06-15")), color = "red", size = 1)+
+  geom_vline(xintercept= as.Date(c("2021-06-09")), color = "red", size = 1)+
+  geom_vline(xintercept= as.Date(c("2021-06-23")), color = "red", size = 1)+
+  geom_vline(xintercept= as.Date(c("2021-07-02")), color = "red", size = 1)+
+  geom_text(aes(x=as.Date(c("2021-06-11")), label="Fußball-EM", y = 750), colour="blue", angle=90, vjust = 1.2, text = element_text(size=10))+
+  
   annotate("rect", fill = "red", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
-           ymin = 0, ymax = Inf)  
+           ymin = 0, ymax = Inf)  +
+  geom_text(aes(x=as.Date(c("2021-09-07")), label="IAA", y = 750), colour="blue", angle=90, vjust = 1.2, text = element_text(size=10))+
+  
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1)) 
