@@ -32,9 +32,8 @@ icu_Bremen_Niedersachsen$med_adj_rate <- (icu_Bremen_Niedersachsen$med_adj /(800
 
 # Plot 1 Hosptialisierung je Bundesland pro Tag
 
-ggplot() + 
+hosp <- ggplot() + 
   geom_line(aes(x = date, y =  med_adj_rate, color = state), size = 2, data = icu_baden_württemberg)+
-  geom_line(aes(x = date, y =   med_adj_rate, color = state), size = 2, data = icu_bayern) +
   geom_line(aes(x = date, y =  med_adj_rate, color = state), size = 2, data = icu_hessen)+
   geom_line(aes(x = date, y =   med_adj_rate, color = state), size = 2, data = icu_mecklenburg_vorpommern)+
   geom_line(aes(x = date, y =   med_adj_rate, color = state), size = 2, data = icu_nordrhein_westfalen)+
@@ -46,10 +45,17 @@ ggplot() +
   geom_line(aes(x = date, y =  med_adj_rate , color = state), size = 2, data = icu_Berlin_Brandenburg)+
   geom_line(aes(x = date, y = med_adj_rate, color = state), size = 2, data = icu_Hamburg_SchleswigHolstein)+
   geom_line(aes(x = date, y =  med_adj_rate, color = state), size = 2, data = icu_Bremen_Niedersachsen)+
-  scale_x_date( date_labels = "%b %d ", date_breaks = "1 month") +
-  ggtitle("Anzahl der Patienten in ICU in verschiedenen Staaten pro Tag ") +
-  xlab("Datum") + ylab(" Anzahl der Neuaufnahmen auf der Intensivstation pro 100.000") +
-  theme(text = element_text(size = 25)) 
+  geom_line(aes(x = date, y =   med_adj_rate, color = state), size = 2, data = icu_bayern) +
+  scale_x_date( date_breaks = "1 month") +
+  ggtitle("Anzahl der Patienten in ICU in verschiedenen Bundesländer pro Tag ") +
+  xlab("Datum") + ylab(" Anzahl der Patienten auf der Intensivstation pro 100.000") +
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1))
+  
+  
+hosp
 
 # Plot
   
