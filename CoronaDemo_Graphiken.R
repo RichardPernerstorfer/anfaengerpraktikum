@@ -1,7 +1,8 @@
 ### Corona Demonstration Graphiken
 
+### Corona Demonstration Graphiken
+
 library(ggplot2)
-library(patchwork)
 library(ggpubr)
 
 ### Barplot Covid Faelle ganz von August bis September
@@ -77,8 +78,8 @@ ggplot(data = data_CorDemo_muenchen, aes(x = date, y = betten_anteil)) +
   theme(text = element_text(size = 30)) +
   theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1)) +
   geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 2) +
-  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) 
-
+  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) +
+  expand_limits(y = 0)
 
 
 
@@ -102,8 +103,8 @@ ggplot(data = data_CorDemo_bayern_covfaelle_aggregate, aes(x = date, y = x)) +
   theme(axis.text.x = element_text(size = 18, face = "bold")) + 
   theme(axis.text.y = element_text(size = 18)) +
   theme(text = element_text(size = 30)) +
-  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1))
- 
+  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1))+
+  expand_limits(y = 0)
   
 
 
@@ -240,4 +241,3 @@ ggplot(data = data_CorDemo_muenchen) + aes(x = date) +
   
   scale_colour_manual(name = "Linien Farben",
                       values = color_code)
-
