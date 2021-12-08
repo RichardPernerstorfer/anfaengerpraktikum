@@ -1,0 +1,9 @@
+data_Deutschland_Hospi<-read.csv("Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv")
+View(data_Deutschland_Hospi)
+data_Deutschland_Hospi$Datum<-as.Date(data_Deutschland_Hospi$Datum,format = "%Y-%m-%d")
+data_Deutschland_Hospi<-data_Deutschland_Hospi[order(data_Deutschland_Hospi$Datum),]
+View(data_Deutschland_Hospi)
+data_Deutschland_Hospi_7T_inzidenz_aggregate<-aggregate(data_Deutschland_Hospi$X7T_Hospitalisierung_Inzidenz,data_Deutschland_Hospi[1],sum)
+View(data_Deutschland_Hospi_7T_inzidenz_aggregate)
+data_Deutschland_Hospi_7T_Hospitalisierung_Faelle<-aggregate(data_Deutschland_Hospi$X7T_Hospitalisierung_Faelle,data_Deutschland_Hospi[1],sum)
+View(data_Deutschland_Hospi_7T_Hospitalisierung_Faelle)
