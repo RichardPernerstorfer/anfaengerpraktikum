@@ -35,7 +35,7 @@ ggplot(data = Hosp_data_bayern, mapping = aes(x = Meldedatum, y = Hospitalisieru
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   labs(x = "Datum", y = "Hospitalisierungen pro 100.000 Einwohner", title = "Hospitalisierungsinzidenz in Bayern") +
   theme(text = element_text(size = 30)) +
-  scale_x_date(breaks = "2 month")
+  scale_x_date(breaks = "1 month", date_labels = "%b %d")
 
 ### Altersgruppen
 ggplot() + 
