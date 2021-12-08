@@ -30,7 +30,7 @@ Hosp_data_bayern <- `data_lgl1 (1)`
 Hosp_data_bayern <- aggregate(Hosp_data_bayern[4], by = Hosp_data_bayern[1], FUN = sum)
 
 ggplot(data = Hosp_data_bayern, mapping = aes(x = Meldedatum, y = Hospitalisierung/  130.7672)) +
-  geom_col() +
+  geom_col(width = 1) +
   theme(axis.text.x = element_text(size = 18, face = "bold", angle = 45, vjust = 1, hjust = 1)) + 
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   labs(x = "Datum", y = "Hospitalisierungen pro 100.000 Einwohner", title = "Hospitalisierungsinzidenz in Bayern") +
@@ -55,7 +55,7 @@ ggplot() +
 ggplot(data = data_bayern, aes(x = date, y = faelle_covid_aktuell)) +
   ggtitle("Covid Fälle in Bayern") +
   xlab("Datum") + ylab("Aktuelle Covid Fälle") + 
-  geom_bar(stat="identity") + 
+  geom_bar(stat="identity", width = 1) + 
   scale_x_date( date_breaks = "1 month") +
   theme(axis.text.x=element_text(angle=50, hjust=1))+
   geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red2", size = 1) +
