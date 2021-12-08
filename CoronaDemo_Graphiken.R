@@ -1,9 +1,8 @@
 ### Corona Demonstration Graphiken
 
-### Corona Demonstration Graphiken
-
 library(ggplot2)
 library(ggpubr)
+library(patchwork)
 
 ### Barplot Covid Faelle ganz von August bis September
 
@@ -44,42 +43,13 @@ plot_Cordemo_bayern
 
 # --> insgesamt 
 ggplot_muc_bayern_cordemo <- ggarrange(plot_Cordemo_muenchen, plot_Cordemo_bayern,
-          ncol = 1, nrow = 2)
+          ncol = 1, nrow = 2) +
+  plot_annotation(theme = theme(plot.title = element_text(size = 30), plot.subtitle = element_text(size = 20)),
+                  
+                  title = "Event 2: Corona Demonstration", 
+                  subtitle = "Anzahl bestätigter Covid-Fälle in München und Bayern um Corona Demonstration 2020")
 
 ggplot_muc_bayern_cordemo
-
-
-
-
-# Belegte Intensivbetten in Bayern (absolut)
-plot_betten_bayern_Cordemo <- ggplot() + 
-  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_CorDemo_bayern, stat = "identity", fill = "blue") + 
-  geom_bar(aes(y = betten_belegt, x = date), data = data_CorDemo_bayern, stat = "identity") + 
-  labs(x = "Datum", y = "Intensivbetten absolut ", title = "Belegte Intensivbetten in Bayern um Corona Demonstration") +
-  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 2) +
-  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) +
-  scale_x_date(date_breaks = "1 week") +
-  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
-  theme(axis.text.y = element_text(size = 18)) +
-  theme(text = element_text(size = 30)) +
-  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1))
-
-plot_betten_bayern_Cordemo
-
-
-
-# Belegte Intensivbetten von München in Prozent
-ggplot(data = data_CorDemo_muenchen, aes(x = date, y = betten_anteil)) +
-  geom_line(stat="identity", size = 2) + 
-  labs(x = "Datum", y = "Anteil belegter Intensivbetten ", title = "Anteil belegter Intensivbetten in München um Corona Demonstration ") +
-  scale_x_date(date_breaks = "1 week" ) +
-  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
-  theme(axis.text.y = element_text(size = 18)) +
-  theme(text = element_text(size = 30)) +
-  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1)) +
-  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 2) +
-  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) +
-  expand_limits(y = 0)
 
 
 
@@ -96,15 +66,55 @@ data_CorDemo_muenchen_anteil_covfaelle_aktuell
 #Plot
 ggplot(data = data_CorDemo_bayern_covfaelle_aggregate, aes(x = date, y = x)) +
   geom_line(stat = "identity", size = 2) +
-  labs(x = "Datum" , y = "Anteil aktueller Covid-Fälle", title = " Anteil der bayrischen Covid-Fälle von München um Corona-Demonstration") +
+  labs(x = "Datum" , y = "Anteil aktueller Covid-Fälle", title = " Event 2: Corona Demonstration",
+       subtitle = "Anteil Covid-Fälle Münchens an Covid-Fälle Bayerns um Corona Demonstration 2020") +
   scale_x_date(date_breaks = "1 week") +
   geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 1) +
-  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) +
+  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "blue", size = 1) +
   theme(axis.text.x = element_text(size = 18, face = "bold")) + 
   theme(axis.text.y = element_text(size = 18)) +
   theme(text = element_text(size = 30)) +
   theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1))+
   expand_limits(y = 0)
+
+
+
+# Belegte Intensivbetten in Bayern (absolut)
+plot_betten_muenchen_Cordemo <- ggplot() + 
+  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_CorDemo_muenchen, stat = "identity", fill = "blue") + 
+  geom_bar(aes(y = betten_belegt, x = date), data = data_CorDemo_muenchen, stat = "identity") + 
+    labs(x = "Datum", y = "Intensivbetten absolut ", title = "Event 2: Corona Demonstration", 
+    subtitle = "Anzahl aller vohandenden Intensivbetten und Anzahl belegter Intensivbetten in München 
+       um Corona Demonstration 2020") +
+  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 2) +
+  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) +
+  scale_x_date(date_breaks = "1 week") +
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1))
+
+plot_betten_muenchen_Cordemo
+
+
+
+# Belegte Intensivbetten von München in Prozent
+ggplot(data = data_CorDemo_muenchen, aes(x = date, y = betten_anteil)) +
+  geom_line(stat="identity", size = 2) + 
+  labs(x = "Datum", y = "Anteil belegter Intensivbetten ", title = "Event 2: Corona Demonstration ",
+       subtitle = "Anteil belegter Intensivbetten Münchens an belegter Intensivbetten Bayerns um Corona Demonstration 2020") +
+  scale_x_date(date_breaks = "1 week" ) +
+  theme(axis.text.x = element_text(size = 18, face = "bold")) + 
+  theme(axis.text.y = element_text(size = 18)) +
+  theme(text = element_text(size = 30)) +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1, vjust = 1)) +
+  geom_vline(xintercept= as.Date(c("2020-09-12")), color = "red", size = 2) +
+  geom_vline(xintercept= as.Date(c("2020-09-19")), color = "violet", size = 2) +
+  expand_limits(y = 0)
+
+
+
+
   
 
 
