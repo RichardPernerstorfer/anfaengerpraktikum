@@ -5,7 +5,7 @@ library(ggpubr)
 
 # Fälle IAA Deutschland unused
 ggplot(data = data_IAA_germany, aes(x = date, y = faelle_covid_aktuell)) +
-  geom_bar(stat="identity") + 
+  geom_bar(stat="identity", width = 1) + 
   labs(x = "Datum", y = "aktuelle Covid-Fälle", title = "Aktuelle Covid-Fälle um die IAA deutschlandweit") + 
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
@@ -15,7 +15,7 @@ ggplot(data = data_IAA_germany, aes(x = date, y = faelle_covid_aktuell)) +
 
 # Fälle IAA Bayern
 IAA_bayern_plot <- ggplot(data = data_IAA_bayern, aes(x = date, y = faelle_covid_aktuell)) +
-  geom_bar(stat="identity") + 
+  geom_bar(stat="identity", width = 1) + 
   labs(x = "Datum", y = "aktuelle Covid-Fälle", title = "Aktuelle Covid-Fälle um die IAA bayernweit") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
@@ -31,7 +31,7 @@ IAA_bayern_plot
 
 # Fälle IAA München
 IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = date, y = faelle_covid_aktuell)) +
-  geom_bar(stat="identity") + 
+  geom_bar(stat="identity", width = 1) + 
   labs(x = "Datum", y = "aktuelle Covid-Fälle", title = "Aktuelle Covid-Fälle um die IAA in München") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
@@ -50,7 +50,7 @@ ggarrange(IAA_bayern_plot, IAA_muenchen_plot, nrow = 2)
 
 # Fälle IAA Bayern ohne München unused
 ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = date, y = faelle_covid_aktuell)) +
-  geom_bar(stat="identity") + 
+  geom_bar(stat="identity", width = 1) + 
   labs(x = "Datum", y = "aktuelle Covid-Fälle", title = "Aktuelle Covid-Fälle um die IAA in Bayern ohne München") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
@@ -76,8 +76,8 @@ ggplot(data = data_IAA_muenchen, aes(y = anteil, x = date)) +
 
 # Belegte Intensivbetten IAA
 ggplot() + 
-  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_IAA_muenchen, stat = "identity", fill = "blue") + 
-  geom_bar(aes(y = betten_belegt, x = date), data = data_IAA_muenchen, stat = "identity") + 
+  geom_bar(aes(y = betten_belegt + betten_frei, x = date), data = data_IAA_muenchen, stat = "identity", fill = "blue", width = 1) + 
+  geom_bar(aes(y = betten_belegt, x = date), data = data_IAA_muenchen, stat = "identity", width = 1) + 
   labs(x = "Datum", y = "Intensivbetten absolut ", title = "Intensivbetten in München") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")), xmax = as.Date(c("2021-09-12")),
