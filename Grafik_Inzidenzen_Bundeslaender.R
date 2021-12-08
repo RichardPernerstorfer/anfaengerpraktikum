@@ -1,10 +1,18 @@
+color_code <- c("Bayern" = "blue", 
+                 "Deutschland" = "red")
 
-
-
- ggplot(data =test34, aes(x = ergebniss3, y = ergebniss1, group = ergebniss2)) +
+ ggplot(data = inzidenz_bundeslaender, aes(x = dates, y = inzidenz, group = bundeslaender)) +
        geom_line(alpha = 0.5) +
-       scale_x_date(date_breaks = "4 week", date_labels = "%b %d") +
-   geom_line(data = new, aes( x = ergebniss3, y = ergebniss1, colour = "red"), size = 1.5) +
-   geom_line(data = new, aes(x = ergebniss3, y = germany, colour = "blue"), size = 1.5)
-   
-   
+       
+       
+   geom_line(data = inzidenz_bayern_germany, aes( x = dates, y = inzidenz, col = "Bayern"), size = 1.5) +
+   geom_line(data = inzidenz_bayern_germany, aes(x = dates, y = germany, col = "Deutschland"), size = 1.5) +
+    labs(x = "Datum", y = "Covid-Fälle pro 100.000 Einwohner",
+         title = "Aktuelle Covid-Fälle pro 100.000 Einwohner in den Bundesländer Deutschlands
+          von April 2020 bis November 2021") +
+    scale_colour_manual(values = color_code, name = "") +
+    scale_x_date(date_breaks = "1 month", date_labels = "%b %y")+
+    
+    theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+    theme(axis.text.y = element_text(size = 18, face = "bold")) +
+    theme(text = element_text(size = 30))
