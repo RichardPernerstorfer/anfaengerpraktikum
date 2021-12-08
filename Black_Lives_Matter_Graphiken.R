@@ -153,3 +153,4 @@ plot_betten_bayern <- ggplot() +
   theme(text = element_text(size = 30))
 
 plot_betten_bayern
+
