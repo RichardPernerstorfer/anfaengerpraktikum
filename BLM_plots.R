@@ -84,7 +84,8 @@ ggplot(data = divi_IAA, aes(x = date, y = betten_anteil)) +
   scale_x_date(date_breaks = "1 week", date_labels = "%b %d") +  
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
-  theme(text = element_text(size = 30))
+  theme(text = element_text(size = 30)) +
+  ylim(0, NA)
 
 # datensätze vernichten
 divi_IAA <- NULL
