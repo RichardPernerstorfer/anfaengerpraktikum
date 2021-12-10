@@ -1,0 +1,16 @@
+rki_data_bayern <- read.csv("RKI_COVID19_Bayern.csv")
+
+rki_data_bayern[,9] <- as.Date(rki_data_bayern[,9])
+
+rki_data_bayern_inzidenz <- aggregate(rki_data_bayern$AnzahlFall, rki_data_bayern[9],sum)
+
+rki_data_bayern_inzidenz$Inzidenz <- (rki_data_bayern_inzidenz$x/ 13076721) *100000
+
+library(ggplot2)
+ggplot(rki_data_bayern_inzidenz, aes(x = Meldedatum, y = Inzidenz)) + geom_bar(stat = "identity", width = 1) +
+  labs(x = "Datum", y = "Neu-Infektionen mit Covid-19 pro 100.000 Einwohner",
+       title = "Tägliche Covid-Infektionen pro 100.000 Einwohner in Bayern")  +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %y")+
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
+  theme(text = element_text(size = 30))
