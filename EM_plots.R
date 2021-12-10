@@ -69,7 +69,6 @@ ggarrange(IAA_muenchen_plot, IAA_bayern_ohne_muenchen_plot, nrow = 2)
 # Fälle IAA Anteil München an Bayern
 ggplot(data = data_IAA_muenchen, aes(y = anteil, x = Meldedatum)) + 
  geom_line(size = 2, color = "black") +
-  geom_smooth(method = "loess", color = "darkgreen") +
   labs(x = "Datum", y = "Anteil an Covid-Infektionen", title = "Anteil der münchner Covid-Infektionen an Bayern um die EM") +
   geom_vline(xintercept = as.Date(c("2021-06-15", "2021-06-19", "2021-06-23", "2021-07-02")), color = "red", size = 2) +
 annotate("rect", fill = "skyblue1", alpha = 0.4, 
