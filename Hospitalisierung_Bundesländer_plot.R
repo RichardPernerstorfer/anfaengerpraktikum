@@ -1,0 +1,135 @@
+# Hospitalisierung pro 100000 einwohner in verschiedenen Bundesländer
+
+# Subdatensätze
+hosp <- as.data.frame(Aktuell_Deutschland_COVID_19_Hospitalisierungen)
+
+hosp_7tage_schleswig_holstein <- subset(hosp, Bundesland_Id == "01")
+hosp_7tage_hamburg <- subset(hosp, Bundesland_Id == "02")
+hosp_7tage_niedersachsen <- subset(hosp, Bundesland_Id == "03")
+hosp_7tage_nordrhein_westfalen <- subset(hosp, Bundesland_Id == "05")
+hosp_7tage_hessen <- subset(hosp, Bundesland_Id == "06")
+hosp_7tage_rheinland_pfalz <- subset(hosp, Bundesland_Id == "07")
+hosp_7tage_baden_Wuerttemberg <- subset(hosp, Bundesland_Id == "08")
+hosp_7tage_saarland <- subset(hosp, Bundesland_Id == "10")
+hosp_7tage_berlin<- subset(hosp, Bundesland_Id == "11")
+hosp_7tage_brandenburg<- subset(hosp, Bundesland_Id == "12")
+hosp_7tage_mecklenburg_Vorpommern<- subset(hosp, Bundesland_Id == "13")
+hosp_7tage_sachsen_anhalt<- subset(hosp, Bundesland_Id == "15")
+hosp_7tage_thueringen<- subset(hosp, Bundesland_Id == "16")
+
+
+# Hospitalisieurngsfaelle
+hosp_7tage_bremen <- subset(hosp, Bundesland_Id == "04")
+bremen_hospit <- aggregate(hosp_7tage_bremen$`7T_Hospitalisierung_Faelle`, hosp_7tage_bremen[1], sum)
+bremen_hospit$Datum <- as.Date(bremen_hospit$Datum)
+
+
+hosp_7tage_bayern <- subset(hosp, Bundesland_Id == "09")
+bayern_hospit <- aggregate(hosp_7tage_bayern$`7T_Hospitalisierung_Faelle`, hosp_7tage_bayern[1], sum)
+bayern_hospit$Datum <- as.Date(bayern_hospit$Datum)
+
+hosp_7tage_sachsen<- subset(hosp, Bundesland_Id == "14")
+sachsen_hospit <- aggregate(hosp_7tage_sachsen$`7T_Hospitalisierung_Faelle`, hosp_7tage_sachsen[1], sum)
+sachsen_hospit$Datum <- as.Date(sachsen_hospit$Datum)
+
+# andere Bundesländer Hospitalisierungsfälle
+
+
+schleswig_holstein_hospit <- aggregate(hosp_7tage_schleswig_holstein$`7T_Hospitalisierung_Faelle`, hosp_7tage_schleswig_holstein[1], sum)
+schleswig_holstein_hospit$Datum <- as.Date(schleswig_holstein_hospit$Datum)
+
+
+hamburg_hospit <- aggregate(hosp_7tage_hamburg$`7T_Hospitalisierung_Faelle`, hosp_7tage_hamburg[1], sum)
+hamburg_hospit$Datum <- as.Date(hamburg_hospit$Datum)
+
+
+niedersachsen_hospit <- aggregate(hosp_7tage_niedersachsen$`7T_Hospitalisierung_Faelle`, hosp_7tage_niedersachsen[1], sum)
+niedersachsen_hospit$Datum <- as.Date(niedersachsen_hospit$Datum)
+
+
+nordrhein_westfalen_hospit <- aggregate(hosp_7tage_nordrhein_westfalen$`7T_Hospitalisierung_Faelle`, hosp_7tage_nordrhein_westfalen[1], sum)
+nordrhein_westfalen_hospit$Datum <- as.Date(nordrhein_westfalen_hospit$Datum)
+
+
+hessen_hospit <- aggregate(hosp_7tage_hessen$`7T_Hospitalisierung_Faelle`, hosp_7tage_hessen[1], sum)
+hessen_hospit$Datum <- as.Date(hessen_hospit$Datum)
+
+
+rheinland_pfalz_hospit <- aggregate(hosp_7tage_rheinland_pfalz$`7T_Hospitalisierung_Faelle`, hosp_7tage_rheinland_pfalz[1], sum)
+rheinland_pfalz_hospit$Datum <- as.Date(rheinland_pfalz_hospit$Datum)
+
+
+baden_Wuerttemberg_hospit <- aggregate(hosp_7tage_baden_Wuerttemberg$`7T_Hospitalisierung_Faelle`, hosp_7tage_baden_Wuerttemberg[1], sum)
+baden_Wuerttemberg_hospit$Datum <- as.Date(baden_Wuerttemberg_hospit$Datum)
+
+
+saarland_hospit <- aggregate(hosp_7tage_saarland$`7T_Hospitalisierung_Faelle`, hosp_7tage_saarland[1], sum)
+saarland_hospit$Datum <- as.Date(saarland_hospit$Datum)
+
+
+berlin_hospit <- aggregate(hosp_7tage_berlin$`7T_Hospitalisierung_Faelle`, hosp_7tage_berlin[1], sum)
+berlin_hospit$Datum <- as.Date(berlin_hospit$Datum)
+
+
+brandenburg_hospit <- aggregate(hosp_7tage_brandenburg$`7T_Hospitalisierung_Faelle`, hosp_7tage_brandenburg[1], sum)
+brandenburg_hospit$Datum <- as.Date(brandenburg_hospit$Datum)
+
+
+mecklenburg_Vorpommern_hospit <- aggregate(hosp_7tage_mecklenburg_Vorpommern$`7T_Hospitalisierung_Faelle`, hosp_7tage_mecklenburg_Vorpommern[1], sum)
+mecklenburg_Vorpommern_hospit$Datum <- as.Date(mecklenburg_Vorpommern_hospit$Datum)
+
+
+sachsen_anhalt_hospit <- aggregate(hosp_7tage_sachsen_anhalt$`7T_Hospitalisierung_Faelle`, hosp_7tage_sachsen_anhalt[1], sum)
+sachsen_anhalt_hospit$Datum <- as.Date(sachsen_anhalt_hospit$Datum)
+
+
+thueringen_hospit <- aggregate(hosp_7tage_thueringen$`7T_Hospitalisierung_Faelle`, hosp_7tage_thueringen[1], sum)
+thueringen_hospit$Datum <- as.Date(thueringen_hospit$Datum)
+
+
+
+
+## Plot 1
+color_code <- c("Bayern" = "blue", "Sachsen" = "red", "Bremen" = "darkgreen")
+
+ggplot()+
+  geom_line( size = 1.5,data = sachsen_hospit, mapping = aes(x = Datum, y = ((x/4056941) *100000)/2 , col = "Sachsen")) +
+  geom_line( size = 1.5,data = bayern_hospit, mapping = aes(x = Datum, y = ((x/13140183) *100000)/2 , col = "Bayern")) +
+  geom_line( size = 1.5, data = bremen_hospit, mapping = aes(x = Datum, y = ((x/ 680130) *100000)/2, col = "Bremen"))+
+  labs(x = "Datum", y = "7-Tage Hospitalisierung pro 100.000 Einwohner", title = "7-Tage Hospitalisierung in unterschiedlichen Bundesländern")+
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %y") +  
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
+  theme(text = element_text(size = 30)) +
+  scale_color_manual(name = "Bundesländer", values = color_code)
+
+
+## Plot 2
+
+color_code2 <- c("Bayern" = "blue", "Sachsen" = "red", "Bremen" = "darkgreen", "Andere" = "grey80")
+
+ggplot()+
+  geom_line( size = 1.5,data = berlin_hospit, mapping = aes(x = Datum, y = ((x/ 3664088) *100000)/2 , col = "Andere")) +
+  geom_line( size = 1.5,data = brandenburg_hospit, mapping = aes(x = Datum, y = ((x/2531071) *100000)/2 , col = "Andere")) +
+  geom_line( size = 1.5, data = hamburg_hospit, mapping = aes(x = Datum, y = ((x/ 1852478) *100000)/2, col = "Andere"))+
+  geom_line( size = 1.5,data = hessen_hospit, mapping = aes(x = Datum, y = ((x/6293154) *100000)/2, col = "Andere" )) +
+  geom_line( size = 1.5,data = mecklenburg_Vorpommern_hospit, mapping = aes(x = Datum, y = ((x/1610774) *100000)/2 , col = "Andere")) +
+  geom_line( size = 1.5, data = niedersachsen_hospit, mapping = aes(x = Datum, y = ((x/ 8003421) *100000)/2, col = "Andere"))+
+  geom_line( size = 1.5,data = nordrhein_westfalen_hospit, mapping = aes(x = Datum, y = ((x/17925570) *100000)/2 , col = "Andere")) +
+  geom_line( size = 1.5,data = rheinland_pfalz_hospit, mapping = aes(x = Datum, y = ((x/4098391) *100000)/2, col = "Andere" )) +
+  geom_line( size = 1.5, data = saarland_hospit, mapping = aes(x = Datum, y = ((x/ 983991) *100000)/2, col = "Andere"))+
+  geom_line( size = 1.5,data = sachsen_anhalt_hospit, mapping = aes(x = Datum, y = ((x/ 2180684) *100000)/2 , col = "Andere")) +
+  geom_line( size = 1.5,data = schleswig_holstein_hospit, mapping = aes(x = Datum, y = ((x/2910875) *100000)/2 , col = "Andere")) +
+  geom_line( size = 1.5, data = thueringen_hospit, mapping = aes(x = Datum, y = ((x/ 2120237) *100000)/2, col = "Andere"))+
+  geom_line( size = 1.5,data = baden_Wuerttemberg_hospit, mapping = aes(x = Datum, y = ((x/11103043) *100000)/2, col = "Andere")) +
+  geom_line( size = 1.5,data = sachsen_hospit, mapping = aes(x = Datum, y = ((x/4056941) *100000)/2 , col = "Sachsen")) +
+  geom_line( size = 1.5,data = bayern_hospit, mapping = aes(x = Datum, y = ((x/13140183) *100000)/2 , col = "Bayern")) +
+  geom_line( size = 1.5, data = bremen_hospit, mapping = aes(x = Datum, y = ((x/ 680130) *100000)/2, col = "Bremen"))+
+  labs(x = "Datum", y = "7-Tage Hospitalisierung pro 100.000 Einwohner", title = "7-Tage Hospitalisierung in unterschiedlichen Bundesländern")+
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %y") +  
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
+  theme(text = element_text(size = 30)) +
+  scale_color_manual(name = "Bundesländer", values = color_code2)
+ 
+  
