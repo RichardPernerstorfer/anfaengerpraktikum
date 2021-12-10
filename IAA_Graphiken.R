@@ -10,9 +10,9 @@ data_IAA_bayern_ohne_muenchen <- aggregate(data_IAA_bayern_ohne_muenchen$AnzahlF
 data_IAA_muenchen$anteil <- data_IAA_muenchen$x / data_IAA_bayern$x
 divi_IAA <- subset(divi_17_11,date >= "2021-08-07" & date <= "2021-11-12" & bundesland == "09" )
 divi_muenchen <- subset(divi_IAA, gemeindeschluessel == "09162")
-divi_muenchen <- aggregate(divi_muenchen$betten_belegt, divi_muenchen[1], sum)
-divi_IAA <- aggregate(divi_IAA$betten_belegt, divi_IAA[1], sum)
-divi_IAA$betten_anteil <- divi_muenchen$x / divi_IAA$x
+divi_muenchen <- aggregate(divi_muenchen$faelle_covid_aktuell_invasiv_beatmet, divi_muenchen[1], sum)
+divi_IAA <- aggregate(divi_IAA$faelle_covid_aktuell_invasiv_beatmet, divi_IAA[1], sum)
+divi_IAA$invasiv_anteil <- divi_muenchen$x / divi_IAA$x
 # Fälle IAA Deutschland
 ggplot(data = data_IAA_germany, aes(x = Meldedatum, y = x)) +
   geom_bar(stat="identity", width = 1) + 
@@ -40,7 +40,7 @@ IAA_bayern_plot <- ggplot(data = data_IAA_bayern, aes(x = Meldedatum, y = x)) +
  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
  theme(text = element_text(size = 30))
-IAA_bayern_plot
+
 
 # Fälle IAA München
 IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = Meldedatum, y = x / 14.72)) +
@@ -56,7 +56,7 @@ IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = Meldedatum, y = x 
 theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
  theme(text = element_text(size = 30))
-IAA_muenchen_plot
+
 
 # Fälle IAA Bayern ohne München 
 IAA_bayern_ohne_muenchen_plot <- ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = Meldedatum, y = x / 130.8)) +
@@ -72,15 +72,16 @@ IAA_bayern_ohne_muenchen_plot <- ggplot(data = data_IAA_bayern_ohne_muenchen, ae
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30))
-IAA_bayern_ohne_muenchen_plot
+
 
 #Zusammenhängende Grafik
 ggarrange(IAA_muenchen_plot, IAA_bayern_ohne_muenchen_plot, nrow = 2)
 
 # Fälle IAA Anteil München an Bayern
 ggplot(data = data_IAA_muenchen, aes(y = anteil, x = Meldedatum)) + 
-  geom_line(size = 2) + 
-  labs(x = "Datum", y = "Anteil an Covid-Infektionen", title = "Anteil der münchner Covid-Infektionen an Bayern") +
+  geom_line(size = 2, color = "black") +
+  geom_smooth(method = "loess", color = "darkgreen") +
+  labs(x = "Datum", y = "Anteil an Covid-Infektionen", title = "Anteil der münchner Covid-Infektionen an Bayern um die IAA") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")) - 0.5 , xmax = as.Date(c("2021-09-12")) + 0.5,
            ymin = 0, ymax = Inf)  +
@@ -93,9 +94,9 @@ ggplot(data = data_IAA_muenchen, aes(y = anteil, x = Meldedatum)) +
  theme(text = element_text(size = 30))
 
 # belegte Intensivbetten Prozent
-ggplot(data = divi_IAA, aes(x = date, y = betten_anteil)) +
+ggplot(data = divi_IAA, aes(x = date, y = invasiv_anteil)) +
   geom_line(stat="identity", size = 2) + 
-  labs(x = "Datum", y = "Anteil an belegten Intensivbetten", title = "Anteil Münchens an belegten Intensivbetten in Bayern um die IAA") +
+  labs(x = "Datum", y = "Anteil an invasiv-beatmeten Patienten", title = "Anteil Münchens an invasiv-beatmeten Patienten in Bayern um die IAA") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")) - 0.5, xmax = as.Date(c("2021-09-12")) + 0.5,
            ymin = 0, ymax = Inf)  +
@@ -114,4 +115,3 @@ data_IAA_germany <- NULL
 data_IAA_bayern <- NULL
 data_IAA_muenchen <- NULL
 data_IAA_bayern_ohne_muenchen <- NULL
-  
