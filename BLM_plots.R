@@ -78,7 +78,7 @@ ggplot(data = data_IAA_muenchen, aes(y = anteil, x = Meldedatum)) +
 # belegte Intensivbetten Prozent
 ggplot(data = divi_IAA, aes(x = date, y = invasiv_anteil)) +
   geom_line(stat="identity", size = 2) + 
-  labs(x = "Datum", y = "Anteil an binvasiv-beatmeten Patienten", title = "Anteil Münchens an invasiv-beatmeten Patienten in Bayern um die BLM-Demo") +
+  labs(x = "Datum", y = "Anteil an invasiv-beatmeten Patienten", title = "Anteil Münchens an invasiv-beatmeten Patienten in Bayern um die BLM-Demo") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-20")), color = "violet", size = 2) +
   scale_x_date(date_breaks = "1 week", date_labels = "%b %d") +  
