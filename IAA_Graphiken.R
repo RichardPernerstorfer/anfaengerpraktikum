@@ -66,7 +66,7 @@ IAA_bayern_ohne_muenchen_plot <- ggplot(data = data_IAA_bayern_ohne_muenchen, ae
            xmin = as.Date(c("2021-09-07")) - 0.5 , xmax = as.Date(c("2021-09-12")) + 0.5,
            ymin = 0, ymax = Inf)  +
   annotate("rect", fill = "skyblue1", alpha = 0.4, 
-           xmin = as.Date(c("2021-09-14")) -0.5, xmax = as.Date(c("2021-09-19")) +0.5,
+           xmin = as.Date(c("2021-09-14")) -0.5, xmax = as.Date(c("2021-09-26")) +0.5,
            ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week", date_labels = "%b %d") + 
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
@@ -80,13 +80,12 @@ ggarrange(IAA_muenchen_plot, IAA_bayern_ohne_muenchen_plot, nrow = 2)
 # Fälle IAA Anteil München an Bayern
 ggplot(data = data_IAA_muenchen, aes(y = anteil, x = Meldedatum)) + 
   geom_line(size = 2, color = "black") +
-  geom_smooth(method = "loess", color = "darkgreen") +
   labs(x = "Datum", y = "Anteil an Covid-Infektionen", title = "Anteil der münchner Covid-Infektionen an Bayern um die IAA") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")) - 0.5 , xmax = as.Date(c("2021-09-12")) + 0.5,
            ymin = 0, ymax = Inf)  +
   annotate("rect", fill = "skyblue1", alpha = 0.4, 
-           xmin = as.Date(c("2021-09-14")) -0.5, xmax = as.Date(c("2021-09-19")) +0.5,
+           xmin = as.Date(c("2021-09-14")) -0.5, xmax = as.Date(c("2021-09-26")) +0.5,
            ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week", date_labels = "%b %d") + 
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
@@ -101,7 +100,7 @@ ggplot(data = divi_IAA, aes(x = date, y = invasiv_anteil)) +
            xmin = as.Date(c("2021-09-07")) - 0.5, xmax = as.Date(c("2021-09-12")) + 0.5,
            ymin = 0, ymax = Inf)  +
 annotate("rect", fill = "plum4", alpha = 0.4, 
-           xmin = as.Date(c("2021-09-21")) - 0.5, xmax = as.Date(c("2021-09-26")) + 0.5,
+           xmin = as.Date(c("2021-09-21")) - 0.5, xmax = as.Date(c("2021-10-03")) + 0.5,
            ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week", date_labels = "%b %d") +  
 theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
