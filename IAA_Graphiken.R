@@ -50,7 +50,7 @@ IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = Meldedatum, y = x 
            xmin = as.Date(c("2021-09-07")) - 0.5 , xmax = as.Date(c("2021-09-12")) + 0.5,
            ymin = 0, ymax = Inf)  +
   annotate("rect", fill = "skyblue1", alpha = 0.4, 
-           xmin = as.Date(c("2021-09-14")) -0.5, xmax = as.Date(c("2021-09-19")) +0.5,
+           xmin = as.Date(c("2021-09-14")) -0.5, xmax = as.Date(c("2021-09-26")) +0.5,
            ymin = 0, ymax = Inf)  +
   scale_x_date(date_breaks = "1 week", date_labels = "%b %d") + 
 theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
