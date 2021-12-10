@@ -1,0 +1,35 @@
+sieben_tage_inzidenz <- as.data.frame(read_excel("Bd_Inz.xlsx", na="NA", sheet="Sheet2"))
+
+sieben_tage_inzidenz[,1] <-as.Date(sieben_tage_inzidenz[,1])
+
+col_code = c("Bayern" = "red", "Deutschland" = "blue")
+
+ggplot(sieben_tage_inzidenz, aes(x = sieben_tage_inzidenz[,1])) +
+  geom_line(aes(y = Bayern, col ="Bayern" ), size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,2] ), alpha = 0.5 ) +
+  geom_line(aes(y = Hessen), alpha = 0.5) +
+  geom_line(aes(y = Berlin), alpha = 0.5) +
+  geom_line(aes(y = Sachsen), alpha = 0.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,15]), alpha = 0.5) +
+  geom_line(aes(y = Saarland), alpha = 0.5) +
+  geom_line(aes(y = Brandenburg), alpha = 0.5) +
+  geom_line(aes(y = Bremen), alpha = 0.5) +
+  geom_line(aes(y = Niedersachsen), alpha = 0.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,9]), alpha = 0.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,11]), alpha = 0.5) +
+  geom_line(aes(y = Hamburg), alpha = 0.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,12]), alpha = 0.5) +
+  geom_line(aes(y = Thüringen), alpha = 0.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,16]), alpha = 0.5) +
+  geom_line(aes(y = Gesamt, col = "Deutschland"), size = 1.5) +
+  scale_colour_manual(values = col_code, name ="") +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b %y") +
+  labs(x = "Datum", y = "7-Tage-Fälle pro 100.000 Einwohner",
+       title = "7-Tage-Inzidenz in ganz Deutschland und Bundesländer") +
+  
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
+  theme(text = element_text(size = 30)) 
+  
+  
+  
