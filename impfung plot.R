@@ -14,7 +14,7 @@ color_code<-c("Impfquote erst"="lightgreen",
 plot_impfquote<-ggplot()+ 
   geom_line(aes(x =date,y=impf_quote_erst,col="Impfquote erst"), linetype=1,size=1,data = vaccination_timeseries)+
   geom_line(aes(x =date,y=impf_quote_voll,col="Impfquote voll"), linetype=1,size=1,data = vaccination_timeseries)+
-  labs(x = "Datum", y = "Impfquote", title = "Impfquote in Deutschland vom Dezember 2020 bis November 2021")+
+  labs(x = "Datum", y = "Impfquote", title = "Impfquote in Deutschland vom Dezember 2020 bis Dezember 2021")+
   scale_x_date(date_breaks = "4 week", date_labels = "%d %b %y")+  
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold"))+
   theme(axis.text.y = element_text(size = 18, face = "bold"))+
