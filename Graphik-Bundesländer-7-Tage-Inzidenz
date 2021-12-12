@@ -2,25 +2,25 @@ sieben_tage_inzidenz <- as.data.frame(read_excel("Bd_Inz.xlsx", na="NA", sheet="
 
 sieben_tage_inzidenz[,1] <-as.Date(sieben_tage_inzidenz[,1])
 
-col_code = c("Bayern" = "red", "Deutschland" = "blue")
+col_code = c("Bayern" = "blue", "Deutschland" = "black", "Bremen" = "darkgreen", "Sachsen" = "red", "Andere" = "grey80")
 
 ggplot(sieben_tage_inzidenz, aes(x = sieben_tage_inzidenz[,1])) +
-  geom_line(aes(y = Bayern, col ="Bayern" ), size = 1.5) +
-  geom_line(aes(y = sieben_tage_inzidenz[,2] ), alpha = 0.5 ) +
-  geom_line(aes(y = Hessen), alpha = 0.5) +
-  geom_line(aes(y = Berlin), alpha = 0.5) +
-  geom_line(aes(y = Sachsen), alpha = 0.5) +
-  geom_line(aes(y = sieben_tage_inzidenz[,15]), alpha = 0.5) +
-  geom_line(aes(y = Saarland), alpha = 0.5) +
-  geom_line(aes(y = Brandenburg), alpha = 0.5) +
-  geom_line(aes(y = Bremen), alpha = 0.5) +
-  geom_line(aes(y = Niedersachsen), alpha = 0.5) +
-  geom_line(aes(y = sieben_tage_inzidenz[,9]), alpha = 0.5) +
-  geom_line(aes(y = sieben_tage_inzidenz[,11]), alpha = 0.5) +
-  geom_line(aes(y = Hamburg), alpha = 0.5) +
-  geom_line(aes(y = sieben_tage_inzidenz[,12]), alpha = 0.5) +
-  geom_line(aes(y = Thüringen), alpha = 0.5) +
-  geom_line(aes(y = sieben_tage_inzidenz[,16]), alpha = 0.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,2], col = "Andere"), alpha = 0.5,size = 1.5) +
+  geom_line(aes(y = Hessen, col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Berlin, col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,15], col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Saarland, col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Brandenburg, col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Niedersachsen, col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,9], col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,11], col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Hamburg, col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,12], col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Thüringen, col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz[,16], col = "Andere"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Sachsen, col = "Sachsen"), size = 1.5) +
+  geom_line(aes(y = Bremen, col = "Bremen"), size = 1.5) +
+  geom_line(aes(y = Bayern, col ="Bayern" ), size = 1.5) + 
   geom_line(aes(y = Gesamt, col = "Deutschland"), size = 1.5) +
   scale_colour_manual(values = col_code, name ="") +
   scale_x_date(date_breaks = "1 month", date_labels = "%b %y") +
