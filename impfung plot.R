@@ -1,4 +1,44 @@
-library(ggplot2)
+### Impfstoff Data
+vaccination_timeseries <-read_tsv("germany_vaccinations_timeseries_v2.tsv")
+View(vaccination_timeseries)
+
+## Formatierung Date
+myformat2<-"%Y-%m-%d"
+vaccination_timeseries$date<-as.Date(vaccination_timeseries$date,myformat2)
+View(vaccination_timeseries)
+
+
+##Plot Impfquote
+color_code<-c("Impfquote erst"="lightgreen",
+              "Impfquote voll"="darkgreen")
+plot_impfquote<-ggplot()+ 
+  geom_line(aes(x =date,y=impf_quote_erst,col="Impfquote erst"), linetype=1,size=1,data = vaccination_timeseries)+
+  geom_line(aes(x =date,y=impf_quote_voll,col="Impfquote voll"), linetype=1,size=1,data = vaccination_timeseries)+
+  labs(x = "Datum", y = "Impfquote", title = "Impfquote in Deutschland vom Dezember 2020 bis November 2021")+
+  scale_x_date(date_breaks = "4 week", date_labels = "%d %b %y")+  
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold"))+
+  theme(axis.text.y = element_text(size = 18, face = "bold"))+
+  theme(text = element_text(size = 30),legend.position = c( .2, .8))+
+  scale_color_manual(name = "Linien Farben", values = color_code)+
+  ylim(0,NA)+
+  geom_vline(xintercept= as.Date(c("2021-10-01")), size = 2)
+plot_impfquote
+
+
+plot_impfquote_ab_Oktober<-ggplot()+ 
+  geom_line(aes(x =date,y=impf_quote_erst,col="Impfquote erst"), linetype=1,size=1,data = subset(vaccination_timeseries,date>= "2021-10-01"),size=2)+
+  geom_line(aes(x =date,y=impf_quote_voll,col="Impfquote voll"), linetype=1,size=1,data = subset(vaccination_timeseries,date>= "2021-10-01"),size=2)+
+  labs(x = "Datum", y = "Impfquote", title = "Impfquote in Deutschland ab Oktober 2021")+
+  scale_x_date(date_breaks = "1 week", date_labels = "%d %b %y")+  
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold"))+
+  theme(axis.text.y = element_text(size = 18, face = "bold"))+
+  theme(text = element_text(size = 30),legend.position = c( .8, .2))+
+  scale_color_manual(name = "Linien Farben", values = color_code)+
+  ylim(0,NA)
+plot_impfquote_ab_Oktober
+
+
+
 
 ###Plot Deutschland Covid-Fälle vs Impfquote
 
@@ -43,27 +83,12 @@ geom_bar(aes(x=date,y=faelle_covid_aktuell),stat="identity")+
   scale_y_continuous(breaks=c(0,2000,4000,6000))
 plot_deutschland_covid_faelle_nach_impfung
 
-#Plot Impfquote
-color_code<-c("Impfquote erst"="lightgreen",
-              "Impfquote voll"="darkgreen")
-plot_impfquote<-ggplot()+ 
-  geom_line(aes(x =date,y=impf_quote_erst,col="Impfquote erst"), linetype=1,size=1,data = vaccination_timeseries1)+
-  geom_line(aes(x =date,y=impf_quote_voll,col="Impfquote voll"), linetype=1,size=1,data = vaccination_timeseries1)+
-  labs(x = "Datum", y = "Impfquote", title = "Impfquote in Deutschland vom Dezember 2020 bis November 2021")+
-  scale_colour_manual(name = "Linien Farben",
-                      values = color_code)+
-  scale_x_date(date_labels ="%b %y",date_breaks = "4 week")+
-  theme(axis.text.x = element_text(size =16,face = "bold", angle = 45, vjust = 1, hjust = 1),legend.position = c( .1, .8))+
-  theme(axis.text.y = element_text(size =20, face = "bold"))+
-  theme(text = element_text(size = 20))
-plot_impfquote
-
-###3 Graphen zusammen
+#3 Graphen zusammen
 library(ggpubr)
 ggarrange(plot_deutschland_covid_faelle_vor_impfung,plot_deutschland_covid_faelle_nach_impfung, plot_impfquote,
           ncol = 1, nrow = 3)
 
-###
+  ###Plot Deutschland Hospi vs Impfquote
 Hosp_data_bayern <- aggregate(data1[4], by =data1[1], FUN = sum)
 View(Hosp_data_bayern)
 ggplot(data = Hosp_data_bayern, mapping = aes(x = Meldedatum, y = Hospitalisierung/130.7672)) +
@@ -105,7 +130,7 @@ plot_Hosp_data_bayern_nach_impfung<-ggplot(data =Hosp_data_bayern_nach_impfung)+
   theme(text = element_text(size =20))
 plot_Hosp_data_bayern_nach_impfung
 
-##3 Graphen zusammen
+#3 Graphen zusammen
 library(ggpubr)
 ggarrange(plot_Hosp_data_bayern_vor_impfung,plot_Hosp_data_bayern_nach_impfung, plot_impfquote,
           ncol = 1, nrow = 3)
