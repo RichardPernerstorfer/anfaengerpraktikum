@@ -68,8 +68,6 @@ ggplot(sieben_tage_inzidenz_oktober, aes(x = sieben_tage_inzidenz_oktober[,1])) 
 
 ### sieben tage inzidenz  ab okotber alle farbig
 
-
-
 color_code3 <- c("Deutschland" = "black", "Sachsen" = "red",
                  "Bayern" = "blue", "Bremen" = "darkgreen",
                  "Baden-Württemberg" = "chartreuse1", "Berlin" = "brown", 
@@ -81,37 +79,36 @@ color_code3 <- c("Deutschland" = "black", "Sachsen" = "red",
                  "Thüringen" = "deeppink1")
 
 ggplot(sieben_tage_inzidenz_oktober, aes(x = sieben_tage_inzidenz_oktober[,1])) +
-  geom_line(aes(y = sieben_tage_inzidenz_oktober[,2], col = "Baden-Württemberg"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = Hessen, col = "Hessen"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = Berlin, col = "Berlin"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = sieben_tage_inzidenz_oktober[,15], col = "Sachsen-Anhalt"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = Saarland, col = "Saarland"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = Brandenburg, col = "Brandenburg"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = Niedersachsen, col = "Niedersachsen"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = sieben_tage_inzidenz_oktober[,9], col = "Mecklenburg-Vorpommern"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = sieben_tage_inzidenz_oktober[,11], col = "Nordrhein-Westfalen"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = Hamburg, col = "Hamburg"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = sieben_tage_inzidenz_oktober[,12], col = "Rheinland-Pfalz"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = Thüringen, col = "Thüringen"), alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = sieben_tage_inzidenz_oktober[,16], col = "Schleswig-Holstein"), alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz_oktober[,2], col = "Baden-Württemberg"),  size = 1.5) +
+  geom_line(aes(y = Hessen, col = "Hessen"),  size = 1.5) +
+  geom_line(aes(y = Berlin, col = "Berlin"), size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz_oktober[,15], col = "Sachsen-Anhalt"), size = 1.5) +
+  geom_line(aes(y = Saarland, col = "Saarland"), size = 1.5) +
+  geom_line(aes(y = Brandenburg, col = "Brandenburg"),  size = 1.5) +
+  geom_line(aes(y = Niedersachsen, col = "Niedersachsen"),  size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz_oktober[,9], col = "Mecklenburg-Vorpommern"),  size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz_oktober[,11], col = "Nordrhein-Westfalen"),  size = 1.5) +
+  geom_line(aes(y = Hamburg, col = "Hamburg"),  size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz_oktober[,12], col = "Rheinland-Pfalz"),  size = 1.5) +
+  geom_line(aes(y = Thüringen, col = "Thüringen"),  size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz_oktober[,16], col = "Schleswig-Holstein"),  size = 1.5) +
   geom_line(aes(y = Sachsen, col = "Sachsen"), size = 1.5) +
   geom_line(aes(y = Bremen, col = "Bremen"), size = 1.5) +
   geom_line(aes(y = Bayern, col ="Bayern" ), size = 1.5) + 
   geom_line(aes(y = Gesamt, col = "Deutschland"), size = 1.5) +
-  scale_colour_manual(values = color_code3, name ="", 
+  scale_colour_manual(values = color_code3, name = "", 
                       breaks = c("Deutschland" , "Sachsen" , "Bayern" ,
                                  "Bremen" ,  "Baden-Württemberg" , "Berlin", "Brandenburg", "Hamburg",
                                  "Hessen" , "Mecklenburg-Vorpommern", "Niedersachsen" ,
                                  "Rheinland-Pflaz" , "Nordrhein-Westfalen" ,
-                                 "Saarland" , "Sachsen-Anhalt", "Schleswig-Holstein" , "Thüringen" ) +
-  scale_x_date(date_breaks = "1 week", date_labels = "%d.%b %y") +
+                                 "Saarland" , "Sachsen-Anhalt", "Schleswig-Holstein" , "Thüringen" )) +
+  scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") +
   labs(x = "Datum", y = "7-Tage-Inzidenz",
        title = "7-Tage-Inzidenz Deutschlands und Bundesländer ab Oktober 2021") +
   
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30)) 
-
   
   
   
