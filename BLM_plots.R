@@ -16,14 +16,6 @@ divi_muenchen <- subset(divi_IAA, gemeindeschluessel == "09162")
 divi_muenchen <- aggregate(divi_muenchen$faelle_covid_aktuell_invasiv_beatmet, divi_muenchen[1], sum)
 divi_IAA <- aggregate(divi_IAA$faelle_covid_aktuell_invasiv_beatmet, divi_IAA[1], sum)
 divi_IAA$invasiv_anteil <- divi_muenchen$x / divi_IAA$x
-# Fälle IAA Deutschland
-ggplot(data = data_IAA_germany, aes(x = Meldedatum, y = x)) +
-  geom_bar(stat="identity", width = 1) + 
-  labs(x = "Datum", y = "Neu-Infektionen mit Covid-19", title = "Covid-Infektionen um die BLM-Demo deutschlandweit") + 
-  geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
-  geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 2) +
-  scale_x_date(date_breaks = "1 week", date_labels = "%b %d") + 
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 
 # Fälle IAA Bayern
 IAA_bayern_plot <- ggplot(data = data_IAA_bayern, aes(x = Meldedatum, y = x)) +
@@ -40,10 +32,10 @@ IAA_bayern_plot <- ggplot(data = data_IAA_bayern, aes(x = Meldedatum, y = x)) +
 # Fälle IAA München
 IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = Meldedatum, y = x / 14.72)) +
   geom_bar(stat="identity", width = 1) + 
-  labs(x = "Datum", y = "Covid Neu-Infektionen\npro 100.000 Einwohner", title = "Covid-Infektionen um die BLM-Demo in München") +
+  labs(x = "Datum", y = "Tägliche Covid-Infektionen\npro 100.000 Einwohner", title = "Tägliche Covid-Infektionen pro 100.000 Einwohner um die BLM-Demo in München") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 2) +
-  scale_x_date(date_breaks = "1 week", date_labels = "%b %d") + 
+  scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") + 
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30))
@@ -52,10 +44,10 @@ IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = Meldedatum, y = x 
 # Fälle IAA Bayern ohne München 
 IAA_bayern_ohne_muenchen_plot <- ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = Meldedatum, y = x / 130.8)) +
   geom_bar(stat="identity", width = 1) + 
-  labs(x = "Datum", y = "Covid Neu-Infektionen\npro 100.000 Einwohner", title = "Covid-Infektionen um die BLM-Demo in Rest-Bayern") +
+  labs(x = "Datum", y = "Tägliche Covid-Infektionen\npro 100.000 Einwohner", title = "Tägliche Covid-Infektionen pro 100.000 Einwohner um die BLM-Demo in Rest-Bayern") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 2) +
-  scale_x_date(date_breaks = "1 week", date_labels = "%b %d") + 
+  scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") + 
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30))
@@ -66,10 +58,10 @@ ggarrange(IAA_muenchen_plot, IAA_bayern_ohne_muenchen_plot, nrow = 2)
 # Fälle IAA Anteil München an Bayern
 ggplot(data = data_IAA_muenchen, aes(y = anteil, x = Meldedatum)) + 
   geom_line(size = 2, color = "black") +
-  labs(x = "Datum", y = "Anteil an Covid-Infektionen", title = "Anteil der münchner Covid-Infektionen an Bayern um die BLM_Demo") +
+  labs(x = "Datum", y = "Anteil der Covid-Infektionen", title = "Anteil der münchner Covid-Infektionen an Bayern um die BLM_Demo") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 2) +
-  scale_x_date(date_breaks = "1 week", date_labels = "%b %d") + 
+  scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") + 
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30))
@@ -77,10 +69,10 @@ ggplot(data = data_IAA_muenchen, aes(y = anteil, x = Meldedatum)) +
 # belegte Intensivbetten Prozent
 ggplot(data = divi_IAA, aes(x = date, y = invasiv_anteil)) +
   geom_line(stat="identity", size = 2) + 
-  labs(x = "Datum", y = "Anteil an invasiv-beatmeten Patienten", title = "Anteil Münchens an invasiv-beatmeten Patienten in Bayern um die BLM-Demo") +
+  labs(x = "Datum", y = "Anteil der invasiv-beatmeten\nCovid-Patienten", title = "Anteil der invasiv-beatmeten Covid-Patienten Münchens an Bayern um die BLM-Demo") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-20")), color = "violet", size = 2) +
-  scale_x_date(date_breaks = "1 week", date_labels = "%b %d") +  
+  scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") +  
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30)) +
