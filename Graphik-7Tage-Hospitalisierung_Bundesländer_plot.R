@@ -115,11 +115,13 @@ ggplot()+
   geom_line( size = 2, data = bremen_hospit, mapping = aes(x = Datum, y = ((x/ 680130) *100000)/2, col = "Bremen"))+
   geom_line( size = 2,data = bayern_hospit, mapping = aes(x = Datum, y = ((x/13140183) *100000)/2 , col = "Bayern")) +
   geom_line( size = 2, data = deutschland_hospt, mapping = aes(x = Datum, y = ((x/ 83129285) *100000)/2, col = "Deutschland"))+
+  
   labs(x = "Datum", y = "7-Tage-Hospitalisierungsfälle pro 100.000 Einwohner", title = "7-Tage-Hospitalisierungsfälle in ganz Deutschland")+
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %y") +  
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30)) +
+
   scale_color_manual(name = "Bundesländer", values = color_code2)
 
  
@@ -168,10 +170,46 @@ ggplot()+
   geom_line( size = 2,data = bayern_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/13140183) *100000)/2 , col = "Bayern (Impfquote: 70,0%)")) +
   geom_line( size = 2, data = bremen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 680130) *100000)/2, col = "Bremen (Impfquote: 84,3%)"))+
   geom_line( size = 2, data = deutschland_hospt_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 83129285) *100000)/2, col = "Deutschland (Impfquote: 72,4%)"))+
+  
   labs(x = "Datum", y = "7-Tage-Hospitalisierungsfälle pro 100.000 Einwohner", title = "7-Tage-Hospitalisierungsfälle in ganz Deutschland in der 4.Welle")+
   scale_x_date(date_breaks = "1 week", date_labels = "%d.%b %y") +  
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30)) +
   scale_color_manual(name = "Bundesländer", values = color_code3)
+
+## Plot 3: alle Bundesländer in Farben
+install.packages("pals")
+library(pals)
+
+color_code4 <- c("Deutschland" = "black", "Sachsen" = "red", "Bayern" = "blue",
+                 "Bremen" = "darkgreen",  "Baden-Württemberg" = "chartreuse1", "Berlin" = "brown", "Brandenburg" = "bisque4", "Hamburg" = "darkslategray",
+                 "Hessen" = "cyan4", "Mecklenburg-Vorpommern" = "chocolate", "Niedersachsen" = "cyan",
+                 "Rheinland-Pflaz" = " darkmagenta", "Nordrhein-Westfalen" = "darkolivegreen",
+                 "Saarland" = "darkgoldenrod1", "Sachsen-Anhalt" = "darkorange", "Schleswig-Holstein" = "darkorchid1", "Thüringen" = "deeppink1",
+                )
+ggplot()+
+  geom_line( size = 1,data = berlin_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 3664088) *100000)/2 , col = "Berlin")) +
+  geom_line( size = 1,data = brandenburg_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/2531071) *100000)/2 , col = "Brandenburg")) +
+  geom_line( size = 1, data = hamburg_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 1852478) *100000)/2, col = "Hamburg"))+
+  geom_line( size = 1,data = hessen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/6293154) *100000)/2, col = "Hessen" )) +
+  geom_line( size = 1,data = mecklenburg_Vorpommern_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/1610774) *100000)/2 , col = "Mecklenburg-Vorpommern")) +
+  geom_line( size = 1, data = niedersachsen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 8003421) *100000)/2, col = "Niedersachsen"))+
+  geom_line( size = 1,data = nordrhein_westfalen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/17925570) *100000)/2 , col = "Nordrhein-Westfalen")) +
+  geom_line( size = 1,data = rheinland_pfalz_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/4098391) *100000)/2, col = "Rheinland-Pflaz" )) +
+  geom_line( size = 1, data = saarland_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 983991) *100000)/2, col = "Saarland"))+
+  geom_line( size = 1,data = sachsen_anhalt_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 2180684) *100000)/2 , col = "Sachsen-Anhalt")) +
+  geom_line( size = 1,data = schleswig_holstein_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/2910875) *100000)/2 , col = "Schleswig-Holstein")) +
+  geom_line( size = 1, data = thueringen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 2120237) *100000)/2, col = "Thüringen"))+
+  geom_line( size = 1,data = baden_Wuerttemberg_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/11103043) *100000)/2, col = "Baden-Württemberg")) +
+  geom_line( size = 2,data = sachsen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/4056941) *100000)/2 , col = "Sachsen")) +
+  geom_line( size = 2,data = bayern_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/13140183) *100000)/2 , col = "Bayern ")) +
+  geom_line( size = 2, data = bremen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 680130) *100000)/2, col = "Bremen"))+
+  geom_line( size = 2, data = deutschland_hospt_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 83129285) *100000)/2, col = "Deutschland"))+
   
+  labs(x = "Datum", y = "7-Tage-Hospitalisierungsfälle pro 100.000 Einwohner", title = "7-Tage-Hospitalisierungsfälle in ganz Deutschland in der 4.Welle")+
+  scale_x_date(date_breaks = "1 week", date_labels = "%d.%b %y") +  
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
+  theme(text = element_text(size = 30)) +
+  scale_color_manual(name = "Bundesländer", values = color_code4)
