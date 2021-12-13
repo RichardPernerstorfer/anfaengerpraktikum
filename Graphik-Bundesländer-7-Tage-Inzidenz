@@ -2,7 +2,7 @@ sieben_tage_inzidenz <- as.data.frame(read_excel("Bd_Inz.xlsx", na="NA", sheet="
 
 sieben_tage_inzidenz[,1] <-as.Date(sieben_tage_inzidenz[,1])
 
-col_code = c("Bayern" = "blue", "Deutschland" = "black", "Bremen" = "darkgreen", "Sachsen" = "red", "Andere" = "grey80")
+color_code1 = c("Bayern" = "blue", "Deutschland" = "black", "Bremen" = "darkgreen", "Sachsen" = "red", "Andere" = "grey80")
 
 ggplot(sieben_tage_inzidenz, aes(x = sieben_tage_inzidenz[,1])) +
   geom_line(aes(y = sieben_tage_inzidenz[,2], col = "Andere"), alpha = 0.5,size = 1.5) +
@@ -22,7 +22,7 @@ ggplot(sieben_tage_inzidenz, aes(x = sieben_tage_inzidenz[,1])) +
   geom_line(aes(y = Bremen, col = "Bremen"), size = 1.5) +
   geom_line(aes(y = Bayern, col ="Bayern" ), size = 1.5) + 
   geom_line(aes(y = Gesamt, col = "Deutschland"), size = 1.5) +
-  scale_colour_manual(values = col_code, name ="", breaks = c("Deutschland", "Bayern", "Sachsen", "Bremen", "Andere")) +
+  scale_colour_manual(values = color_code1, name ="", breaks = c("Deutschland", "Bayern", "Sachsen", "Bremen", "Andere")) +
   scale_x_date(date_breaks = "1 month", date_labels = "%d. %b %y") +
   labs(x = "Datum", y = "7-Tage-Inzidenz",
        title = "7-Tage-Inzidenz Deutschland und Bundesländer") +
@@ -36,7 +36,7 @@ ggplot(sieben_tage_inzidenz, aes(x = sieben_tage_inzidenz[,1])) +
 
 sieben_tage_inzidenz_oktober <- subset(sieben_tage_inzidenz, sieben_tage_inzidenz[,1] >= "2021-10-01")
 
-color_code = c("Bayern (Impfquote: 70,0%)" = "blue", "Deutschland (Impfquote: 72,4%)" = "black", "Bremen (Impfquote: 84,3%)" = "darkgreen", "Sachsen (Impfquote: 61,6%)" = "red", "Andere" = "grey80")
+color_code2 = c("Bayern (Impfquote: 70,0%)" = "blue", "Deutschland (Impfquote: 72,4%)" = "black", "Bremen (Impfquote: 84,3%)" = "darkgreen", "Sachsen (Impfquote: 61,6%)" = "red", "Andere" = "grey80")
 
 ggplot(sieben_tage_inzidenz_oktober, aes(x = sieben_tage_inzidenz_oktober[,1])) +
   geom_line(aes(y = sieben_tage_inzidenz_oktober[,2], col = "Andere"), alpha = 0.5,size = 1.5) +
@@ -56,8 +56,8 @@ ggplot(sieben_tage_inzidenz_oktober, aes(x = sieben_tage_inzidenz_oktober[,1])) 
   geom_line(aes(y = Bremen, col = "Bremen (Impfquote: 84,3%)"), size = 1.5) +
   geom_line(aes(y = Bayern, col ="Bayern (Impfquote: 70,0%)" ), size = 1.5) + 
   geom_line(aes(y = Gesamt, col = "Deutschland (Impfquote: 72,4%)"), size = 1.5) +
-  scale_colour_manual(values = color_code, name ="Bundesländer", breaks = c("Deutschland (Impfquote: 72,4%)", "Sachsen (Impfquote: 61,6%)", "Bayern (Impfquote: 70,0%)","Bremen (Impfquote: 84,3%)", "Andere")) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%d. %b %y") +
+  scale_colour_manual(values = color_code2, name ="", breaks = c("Deutschland (Impfquote: 72,4%)", "Sachsen (Impfquote: 61,6%)", "Bayern (Impfquote: 70,0%)","Bremen (Impfquote: 84,3%)", "Andere")) +
+  scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") +
   labs(x = "Datum", y = "7-Tage-Inzidenz",
        title = "7-Tage-Inzidenz in ganz Deutschland und Bundesländer ab Oktober 2021") +
   
@@ -70,14 +70,18 @@ ggplot(sieben_tage_inzidenz_oktober, aes(x = sieben_tage_inzidenz_oktober[,1])) 
 
 
 
-color_code3 <- c("Deutschland" = "black", "Sachsen" = "red", "Bayern" = "blue",
-                 "Bremen" = "darkgreen",  "Baden-Württemberg" = "chartreuse1", "Berlin" = "brown", "Brandenburg" = "bisque4", "Hamburg" = "darkslategray",
-                 "Hessen" = "cyan4", "Mecklenburg-Vorpommern" = "chocolate", "Niedersachsen" = "cyan",
-                 "Rheinland-Pflaz" = " darkmagenta", "Nordrhein-Westfalen" = "darkolivegreen",
-                 "Saarland" = "darkgoldenrod1", "Sachsen-Anhalt" = "darkorange", "Schleswig-Holstein" = "darkorchid1", "Thüringen" = "deeppink1")
+color_code3 <- c("Deutschland" = "black", "Sachsen" = "red",
+                 "Bayern" = "blue", "Bremen" = "darkgreen",
+                 "Baden-Württemberg" = "chartreuse1", "Berlin" = "brown", 
+                 "Brandenburg" = "bisque4", "Hamburg" = "darkslategray",
+                 "Hessen" = "cyan4", "Mecklenburg-Vorpommern" = "chocolate", 
+                 "Niedersachsen" = "cyan",  "Rheinland-Pfalz" = " darkmagenta", 
+                 "Nordrhein-Westfalen" = "darkolivegreen", "Saarland" = "darkgoldenrod1", 
+                 "Sachsen-Anhalt" = "darkorange", "Schleswig-Holstein" = "darkorchid1", 
+                 "Thüringen" = "deeppink1")
 
 ggplot(sieben_tage_inzidenz_oktober, aes(x = sieben_tage_inzidenz_oktober[,1])) +
-  geom_line(aes(y = sieben_tage_inzidenz_oktober[,2], col = "Baden-Württemberg"), alpha = 0.5,size = 1.5) +
+  geom_line(aes(y = sieben_tage_inzidenz_oktober[,2], col = "Baden-Württemberg"), alpha = 0.5, size = 1.5) +
   geom_line(aes(y = Hessen, col = "Hessen"), alpha = 0.5, size = 1.5) +
   geom_line(aes(y = Berlin, col = "Berlin"), alpha = 0.5, size = 1.5) +
   geom_line(aes(y = sieben_tage_inzidenz_oktober[,15], col = "Sachsen-Anhalt"), alpha = 0.5, size = 1.5) +
@@ -107,6 +111,7 @@ ggplot(sieben_tage_inzidenz_oktober, aes(x = sieben_tage_inzidenz_oktober[,1])) 
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30)) 
+
   
   
   
