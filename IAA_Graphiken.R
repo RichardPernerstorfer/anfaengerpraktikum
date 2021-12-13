@@ -19,7 +19,7 @@ divi_IAA$invasiv_anteil <- divi_muenchen$x / divi_IAA$x
 # Fälle IAA München
 IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = Meldedatum, y = x / 14.72)) +
   geom_bar(stat="identity", width = 1) + 
-  labs(x = "Datum", y = "Covid-Infektionen\npro 100.000 Einwohner", title = "Tägliche Covid-Infektionen pro 100.000 EInwohner um die IAA in München") +
+  labs(x = "Datum", y = "Covid-Infektionen\npro 100.000 Einwohner", title = "Tägliche Covid-Infektionen pro 100.000 Einwohner um die IAA in München") +
   annotate("rect", fill = "pink", alpha = 0.4, 
            xmin = as.Date(c("2021-09-07")) - 0.5 , xmax = as.Date(c("2021-09-12")) + 0.5,
            ymin = 0, ymax = Inf)  +
