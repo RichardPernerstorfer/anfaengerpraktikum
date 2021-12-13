@@ -24,32 +24,32 @@ IAA_bayern_plot <- ggplot(data = data_IAA_bayern, aes(x = Meldedatum, y = x)) +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 2) +
   scale_x_date(date_breaks = "1 week", date_labels = "%b %d") + 
-  theme(axis.text.x = element_text(size = 16, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
-  theme(axis.text.y = element_text(size = 16, face = "bold")) +
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30))
 
 
 # Fälle IAA München
 IAA_muenchen_plot <- ggplot(data = data_IAA_muenchen, aes(x = Meldedatum, y = x / 14.72)) +
   geom_bar(stat="identity", width = 1) + 
-  labs(x = "Datum", y = "Tägliche Covid-Infektionen\npro 100.000 Einwohner", title = "Tägliche Covid-Infektionen pro 100.000 Einwohner um die BLM-Demo in München") +
+  labs(x = "Datum", y = "Covid-Infektionen\npro 100.000 Einwohner", title = "Tägliche Covid-Infektionen pro 100.000 Einwohner um die BLM-Demo in München") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 2) +
   scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") + 
-  theme(axis.text.x = element_text(size = 16, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
-  theme(axis.text.y = element_text(size = 16, face = "bold")) +
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30))
 
 
 # Fälle IAA Bayern ohne München 
 IAA_bayern_ohne_muenchen_plot <- ggplot(data = data_IAA_bayern_ohne_muenchen, aes(x = Meldedatum, y = x / 130.8)) +
   geom_bar(stat="identity", width = 1) + 
-  labs(x = "Datum", y = "Tägliche Covid-Infektionen\npro 100.000 Einwohner", title = "Tägliche Covid-Infektionen pro 100.000 Einwohner um die BLM-Demo in Rest-Bayern") +
+  labs(x = "Datum", y = "Covid-Infektionen\npro 100.000 Einwohner", title = "Tägliche Covid-Infektionen pro 100.000 Einwohner um die BLM-Demo in Rest-Bayern") +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 2) +
   scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") + 
-  theme(axis.text.x = element_text(size = 16, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
-  theme(axis.text.y = element_text(size = 16, face = "bold")) +
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30))
 
 #Zusammenhängende Grafik
@@ -62,8 +62,8 @@ ggplot(data = data_IAA_muenchen, aes(y = anteil, x = Meldedatum)) +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-13")), color = "blue", size = 2) +
   scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") + 
-  theme(axis.text.x = element_text(size = 16, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
-  theme(axis.text.y = element_text(size = 16, face = "bold")) +
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30))
 
 # belegte Intensivbetten Prozent
@@ -73,8 +73,8 @@ ggplot(data = divi_IAA, aes(x = date, y = invasiv_anteil)) +
   geom_vline(xintercept= as.Date(c("2020-06-06")), color = "red", size = 2) +
   geom_vline(xintercept= as.Date(c("2020-06-20")), color = "violet", size = 2) +
   scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") +  
-  theme(axis.text.x = element_text(size = 16, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
-  theme(axis.text.y = element_text(size = 16, face = "bold")) +
+  theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
+  theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30)) +
   ylim(0, NA)
 
