@@ -64,7 +64,7 @@ ggplot(data = data_IAA_muenchen, aes(y = anteil, x = Meldedatum)) +
   scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") + 
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
-  theme(text = element_text(size = 23))
+  theme(text = element_text(size = 30))
 
 # belegte Intensivbetten Prozent
 ggplot(data = divi_IAA, aes(x = date, y = invasiv_anteil)) +
