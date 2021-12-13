@@ -6,29 +6,29 @@ hosp <- as.data.frame(Aktuell_Deutschland_COVID_19_Hospitalisierungen)
 hosp_7tage_schleswig_holstein <- subset(hosp, Bundesland_Id == "01")
 hosp_7tage_hamburg <- subset(hosp, Bundesland_Id == "02")
 hosp_7tage_niedersachsen <- subset(hosp, Bundesland_Id == "03")
+hosp_7tage_bremen <- subset(hosp, Bundesland_Id == "04")
 hosp_7tage_nordrhein_westfalen <- subset(hosp, Bundesland_Id == "05")
 hosp_7tage_hessen <- subset(hosp, Bundesland_Id == "06")
 hosp_7tage_rheinland_pfalz <- subset(hosp, Bundesland_Id == "07")
 hosp_7tage_baden_Wuerttemberg <- subset(hosp, Bundesland_Id == "08")
+hosp_7tage_bayern <- subset(hosp, Bundesland_Id == "09")
 hosp_7tage_saarland <- subset(hosp, Bundesland_Id == "10")
 hosp_7tage_berlin<- subset(hosp, Bundesland_Id == "11")
 hosp_7tage_brandenburg<- subset(hosp, Bundesland_Id == "12")
 hosp_7tage_mecklenburg_Vorpommern<- subset(hosp, Bundesland_Id == "13")
+hosp_7tage_sachsen<- subset(hosp, Bundesland_Id == "14")
 hosp_7tage_sachsen_anhalt<- subset(hosp, Bundesland_Id == "15")
 hosp_7tage_thueringen<- subset(hosp, Bundesland_Id == "16")
 hosp_7tage_deutschland <- subset(hosp, Bundesland_Id == "00")
 
 # Hospitalisieurngsfaelle Bremen, Sachsen , Bayern & Deustchland
-hosp_7tage_bremen <- subset(hosp, Bundesland_Id == "04")
+
 bremen_hospit <- aggregate(hosp_7tage_bremen$`7T_Hospitalisierung_Faelle`, hosp_7tage_bremen[1], sum)
 bremen_hospit$Datum <- as.Date(bremen_hospit$Datum)
 
-
-hosp_7tage_bayern <- subset(hosp, Bundesland_Id == "09")
 bayern_hospit <- aggregate(hosp_7tage_bayern$`7T_Hospitalisierung_Faelle`, hosp_7tage_bayern[1], sum)
 bayern_hospit$Datum <- as.Date(bayern_hospit$Datum)
 
-hosp_7tage_sachsen<- subset(hosp, Bundesland_Id == "14")
 sachsen_hospit <- aggregate(hosp_7tage_sachsen$`7T_Hospitalisierung_Faelle`, hosp_7tage_sachsen[1], sum)
 sachsen_hospit$Datum <- as.Date(sachsen_hospit$Datum)
 
@@ -95,7 +95,7 @@ thueringen_hospit$Datum <- as.Date(thueringen_hospit$Datum)
 
 ## Plot 1
 
-color_code2 <- c("Bayern" = "blue", "Sachsen" = "red", "Bremen" = "darkgreen", "Deutschland" = "black", , "Andere" = "grey80")
+color_code2 <- c("Deutschland" = "black", "Bayern" = "blue",  "Bremen" = "darkgreen", "Sachsen" = "red", "Andere" = "grey80")
 
 ggplot()+
   geom_line( size = 1,data = berlin_hospit, mapping = aes(x = Datum, y = ((x/ 3664088) *100000)/2 , col = "Andere")) +
@@ -115,19 +115,17 @@ ggplot()+
   geom_line( size = 2, data = bremen_hospit, mapping = aes(x = Datum, y = ((x/ 680130) *100000)/2, col = "Bremen"))+
   geom_line( size = 2,data = bayern_hospit, mapping = aes(x = Datum, y = ((x/13140183) *100000)/2 , col = "Bayern")) +
   geom_line( size = 2, data = deutschland_hospt, mapping = aes(x = Datum, y = ((x/ 83129285) *100000)/2, col = "Deutschland"))+
-  
-  labs(x = "Datum", y = "7-Tage Hospitalisierung pro 100.000 Einwohner", title = "7-Tage Hospitalisierung in unterschiedlichen Bundesländern")+
+  labs(x = "Datum", y = "7-Tage-Hospitalisierungsfälle pro 100.000 Einwohner", title = "7-Tage-Hospitalisierungsfälle in ganz Deutschland")+
   scale_x_date(date_breaks = "1 month", date_labels =  "%b %y") +  
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30)) +
-
   scale_color_manual(name = "Bundesländer", values = color_code2)
 
  
 ### Plot 2 ab Oktober 2021 ( im Bezug auf 4.Welle)
 
-
+# Subdatensätze 
 bremen_hospit_ab_11_Okt <-  subset(bremen_hospit, Datum >= "2021-10-11"  )
 bayern_hospit_ab_11_Okt <-  subset(bayern_hospit, Datum >= "2021-10-11"  )
 sachsen_hospit_ab_11_Okt <-  subset(sachsen_hospit, Datum >= "2021-10-11" )
@@ -148,8 +146,9 @@ schleswig_holstein_hospit_ab_11_Okt <-  subset(schleswig_holstein_hospit, Datum 
 
 
 
-color_code3 <- c("Bayern (Impfquote: 69,9%)" = "blue", "Sachsen (Impfquote: 61,4%)" = "red", "Bremen (Impfquote: 84,3%)" = "darkgreen", "Andere"="grey80",
-"Deutschland" = "black")
+color_code3 <- c("Deutschland (Impfquote: 72,4%)" = "black", "Sachsen (Impfquote: 61,6%)" = "red", "Bayern (Impfquote: 70,0%)" = "blue",
+                 "Bremen (Impfquote: 84,3%)" = "darkgreen", 
+                 "Andere"="grey80")
  
 ggplot()+
   geom_line( size = 1,data = berlin_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 3664088) *100000)/2 , col = "Andere")) +
@@ -165,13 +164,12 @@ ggplot()+
   geom_line( size = 1,data = schleswig_holstein_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/2910875) *100000)/2 , col = "Andere")) +
   geom_line( size = 1, data = thueringen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 2120237) *100000)/2, col = "Andere"))+
   geom_line( size = 1,data = baden_Wuerttemberg_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/11103043) *100000)/2, col = "Andere")) +
-  geom_line( size = 2,data = sachsen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/4056941) *100000)/2 , col = "Sachsen (Impfquote: 61,4%)")) +
-  geom_line( size = 2,data = bayern_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/13140183) *100000)/2 , col = "Bayern (Impfquote: 69,9%)")) +
+  geom_line( size = 2,data = sachsen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/4056941) *100000)/2 , col = "Sachsen (Impfquote: 61,6%)")) +
+  geom_line( size = 2,data = bayern_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/13140183) *100000)/2 , col = "Bayern (Impfquote: 70,0%)")) +
   geom_line( size = 2, data = bremen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 680130) *100000)/2, col = "Bremen (Impfquote: 84,3%)"))+
-  geom_line( size = 2, data = deutschland_hospt_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 83129285) *100000)/2, col = "Deutschland"))+
-  
-  labs(x = "Datum", y = "7-Tage Hospitalisierung pro 100.000 Einwohner", title = "7-Tage Hospitalisierung in unterschiedlichen Bundesländern in der 4.Welle")+
-  scale_x_date(date_breaks = "1 week", date_labels =  "%b %y") +  
+  geom_line( size = 2, data = deutschland_hospt_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 83129285) *100000)/2, col = "Deutschland (Impfquote: 72,4%)"))+
+  labs(x = "Datum", y = "7-Tage-Hospitalisierungsfälle pro 100.000 Einwohner", title = "7-Tage-Hospitalisierungsfälle in ganz Deutschland in der 4.Welle")+
+  scale_x_date(date_breaks = "1 week", date_labels = "%d.%b %y") +  
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30)) +
