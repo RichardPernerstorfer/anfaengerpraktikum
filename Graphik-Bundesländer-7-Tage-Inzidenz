@@ -24,12 +24,12 @@ ggplot(sieben_tage_inzidenz, aes(x = sieben_tage_inzidenz[,1])) +
   geom_line(aes(y = Gesamt, col = "Deutschland"), size = 1.5) +
   scale_colour_manual(values = color_code1, name ="", breaks = c("Deutschland", "Bayern", "Sachsen", "Bremen", "Andere")) +
   scale_x_date(date_breaks = "1 month", date_labels = "%d. %b %y") +
-  labs(x = "Datum", y = "7-Tage-Inzidenz",
-       title = "7-Tage-Inzidenz Deutschland und Bundesländer") +
+  labs(x = "Datum", y = "7-Tage-Inzidenz für Covid-Infektionen",
+       title = "7-Tage-Inzidenz für Covid-Infektionen in Deutschland und Bundesländern") +
   
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
-  theme(text = element_text(size = 30)) 
+  theme(text = element_text(size = 27)) 
 
 
 # sieben tages inzidenz ab Oktober
@@ -58,13 +58,13 @@ ggplot(sieben_tage_inzidenz_oktober, aes(x = sieben_tage_inzidenz_oktober[,1])) 
   geom_line(aes(y = Gesamt, col = "Deutschland (Impfquote: 72,4%)"), size = 1.5) +
   scale_colour_manual(values = color_code2, name ="", breaks = c("Deutschland (Impfquote: 72,4%)", "Sachsen (Impfquote: 61,6%)", "Bayern (Impfquote: 70,0%)","Bremen (Impfquote: 84,3%)", "Andere")) +
   scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") +
-  labs(x = "Datum", y = "7-Tage-Inzidenz",
-       title = "7-Tage-Inzidenz in ganz Deutschland und Bundesländer ab Oktober 2021") +
+  labs(x = "Datum", y = "7-Tage-Inzidenz für Covid-Infektionen",
+       title = "7-Tage-Inzidenz für Covid-Infektionen in Deutschland und Bundesländern ab Oktober 2021") +
   
   
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
-  theme(text = element_text(size = 30)) 
+  theme(text = element_text(size = 27)) 
 
 ### sieben tage inzidenz  ab okotber alle farbig
 
@@ -109,6 +109,7 @@ ggplot(sieben_tage_inzidenz_oktober, aes(x = sieben_tage_inzidenz_oktober[,1])) 
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
   theme(text = element_text(size = 30)) 
+
 
 
   
