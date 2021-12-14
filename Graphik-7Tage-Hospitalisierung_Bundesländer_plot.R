@@ -116,13 +116,12 @@ ggplot()+
   geom_line( size = 2,data = bayern_hospit, mapping = aes(x = Datum, y = ((x/13140183) *100000)/2 , col = "Bayern")) +
   geom_line( size = 2, data = deutschland_hospt, mapping = aes(x = Datum, y = ((x/ 83129285) *100000)/2, col = "Deutschland"))+
   
-  labs(x = "Datum", y = "7-Tage-Hospitalisierungsfälle pro 100.000 Einwohner", title = "7-Tage-Hospitalisierungsfälle in ganz Deutschland")+
-  scale_x_date(date_breaks = "1 month", date_labels =  "%b %y") +  
+  labs(x = "Datum", y = "7-Tage-Inzidenz für Covid-Hospitalisierungen", title = "7-Tage-Inzidenz für Covid-Hospitalisierungen in Deutschland und Bundesländern")+
+  scale_x_date(date_breaks = "1 month", date_labels =  "%d. %b %y") +  
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
-  theme(text = element_text(size = 30)) +
-
-  scale_color_manual(name = "Bundesländer", values = color_code2)
+  theme(text = element_text(size = 27)) +
+  scale_color_manual(name = " ", values = color_code2)
 
  
 ### Plot 2 ab Oktober 2021 ( im Bezug auf 4.Welle)
@@ -171,12 +170,14 @@ ggplot()+
   geom_line( size = 2, data = bremen_hospit_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 680130) *100000)/2, col = "Bremen (Impfquote: 84,3%)"))+
   geom_line( size = 2, data = deutschland_hospt_ab_11_Okt, mapping = aes(x = Datum, y = ((x/ 83129285) *100000)/2, col = "Deutschland (Impfquote: 72,4%)"))+
   
-  labs(x = "Datum", y = "7-Tage-Hospitalisierungsfälle pro 100.000 Einwohner", title = "7-Tage-Hospitalisierungsfälle in ganz Deutschland in der 4.Welle")+
-  scale_x_date(date_breaks = "1 week", date_labels = "%d.%b %y") +  
+  labs(x = "Datum", y = "7-Tage-Inzidenz für Covid-Hospitalisierungen", title = "7-Tage-Inzidenz für Covid-Hospitalisierungen\nin Deutschland und Bundesländern ab Oktober 2021")+
+  scale_x_date(date_breaks = "1 week", date_labels = "%d. %b %y") +  
   theme(axis.text.x = element_text(size = 18, angle = 45, vjust = 1, hjust = 1, face = "bold")) +
   theme(axis.text.y = element_text(size = 18, face = "bold")) +
-  theme(text = element_text(size = 30)) +
-  scale_color_manual(name = "Bundesländer", values = color_code3)
+  theme(text = element_text(size = 27)) +
+  scale_color_manual(name = " ", values = color_code3)
+
+
 
 ## Plot 3: alle Bundesländer in Farben
 install.packages("pals")
