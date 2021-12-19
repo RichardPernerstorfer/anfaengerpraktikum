@@ -2,7 +2,6 @@
 
 library(dplyr)
 library(ggplot2)
-library(patchwork)
 library(ggpubr)
 library(readr)
 library(vroom)
