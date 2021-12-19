@@ -1,6 +1,9 @@
-# 7 -Tage Hospitalisierung pro 100000 einwohner in verschiedenen Bundesländer
+# 7 -Tage Hospitalisierungsinzidenz pro 100000 Einwohner in verschiedenen Bundesländer und Deutschland
+# Einwohnerzahl aus: https://de.wikipedia.org/wiki/Liste_der_deutschen_Bundesl%C3%A4nder_nach_Bev%C3%B6lkerung Jahr 2020
+# Deutschland Bevölkerung: https://en.wikipedia.org/wiki/Demographics_of_Germany
 
-# Subdatensätze
+
+# Subdatensätze erstellen zu den einzelnen Bundesländer 
 hosp <- as.data.frame(Aktuell_Deutschland_COVID_19_Hospitalisierungen)
 
 hosp_7tage_schleswig_holstein <- subset(hosp, Bundesland_Id == "01")
@@ -35,8 +38,8 @@ sachsen_hospit$Datum <- as.Date(sachsen_hospit$Datum)
 deutschland_hospt <- aggregate(hosp_7tage_deutschland$`7T_Hospitalisierung_Faelle`, hosp_7tage_deutschland[1], sum)
 deutschland_hospt$Datum <- as.Date(deutschland_hospt$Datum)
 
-# andere Bundesländer Hospitalisierungsfälle
 
+#  Hospitalisierungsfälle in anderen Bundesländer
 
 schleswig_holstein_hospit <- aggregate(hosp_7tage_schleswig_holstein$`7T_Hospitalisierung_Faelle`, hosp_7tage_schleswig_holstein[1], sum)
 schleswig_holstein_hospit$Datum <- as.Date(schleswig_holstein_hospit$Datum)
@@ -93,7 +96,7 @@ thueringen_hospit$Datum <- as.Date(thueringen_hospit$Datum)
 
 
 
-## Plot 1
+## Plot 1: nur Sachsen, Bremen, Bayern und Deutschland farbig markiert
 
 color_code2 <- c("Deutschland" = "black", "Bayern" = "blue",  "Bremen" = "darkgreen", "Sachsen" = "red", "Andere" = "grey80")
 
@@ -124,7 +127,7 @@ ggplot()+
   scale_color_manual(name = " ", values = color_code2)
 
  
-### Plot 2 ab Oktober 2021 ( im Bezug auf 4.Welle)
+### Plot 2: ab Oktober 2021 (im Bezug auf 4.Welle)
 
 # Subdatensätze 
 bremen_hospit_ab_11_Okt <-  subset(bremen_hospit, Datum >= "2021-10-11"  )
@@ -179,9 +182,9 @@ ggplot()+
 
 
 
+
 ## Plot 3: alle Bundesländer in Farben
-install.packages("pals")
-library(pals)
+
 
 color_code4 <- c("Deutschland" = "black", "Sachsen" = "red", "Bayern" = "blue",
                  "Bremen" = "darkgreen",  "Baden-Württemberg" = "chartreuse1", "Berlin" = "brown", "Brandenburg" = "bisque4", "Hamburg" = "darkslategray",
